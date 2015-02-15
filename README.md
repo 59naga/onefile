@@ -1,26 +1,22 @@
-# mainBowerOnefile
-[![NPM version][npm-image]][npm]
-<!-- [![Build Status][travis-image]][travis] -->
-[![Dependency Status][depstat-image]][depstat]
-
+# mainBowerOnefile [![NPM version][npm-image]][npm]
 ## Install
 ```bash
 $ npm install main-bower-onefile -g
 ```
 
-## mbof
+## onefile
 ```bash
 $ cd /path/to/bower-json-directory
 $ bower install
-$ mbof bower_components.js
+$ onefile bower_components.js
 # compiled bower_components.js
 ```
 
 ## help
 ```bash
-$ mbof
+$ onefile
 
-  Usage: mbof onefilename[.js] [options...]
+  Usage: onefile name[.js] [options...]
 
   Options:
 

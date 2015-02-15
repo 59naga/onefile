@@ -2,7 +2,7 @@ mainBowerOnefile=
   bin: ->
     commander= require 'commander'
     commander
-      .usage 'onefilename[.js] [options...]'
+      .usage 'name[.js] [options...]'
       .option '-j, --json'      ,'Use [./bower.json]'      ,'./bower.json'
       .option '-d, --directory' ,'Use [./bower_components]','./bower_components'
       .option '-r, --rc'        ,'Use [./.bowerrc]'        ,'./.bowerrc'
@@ -48,6 +48,7 @@ mainBowerOnefile=
       process.exit()
 
 module.exports= mainBowerOnefile
+
 ###
                                   _____  _____
                                  /      /    /
