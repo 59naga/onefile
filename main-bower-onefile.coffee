@@ -14,7 +14,6 @@ mainBowerOnefile=
     path= require 'path'
     filename= commander.args[0]
     filename+= '.js' if filename.match(/.js$/) is null
-    dirname= path.dirname filename
 
     Gulp= require 'gulp'
     mainBowerFiles= require 'main-bower-files'
@@ -27,28 +26,29 @@ mainBowerOnefile=
         bowerDirectory: commander.directory
         bowerrc: commander.rc
     gulp= gulp.pipe jsfy dataurl:true
-    gulp= gulp.pipe concat filename
-    gulp= gulp.pipe Gulp.dest dirname
+    gulp= gulp.pipe concat path.basename filename
+    gulp= gulp.pipe Gulp.dest path.dirname path.resolve process.cwd(),filename
     gulp.on 'end',->
       if commander.uglifyjs
         filenameMin= filename.replace /.js$/,'.min.js'
 
         uglifyjs= path.resolve __dirname,'node_modules/.bin/uglifyjs'
-        shell= "node #{uglifyjs} #{filename} > #{filenameMin}"
+        cwdFilename= path.resolve process.cwd(),filename
+        cwdFilenameMin= path.resolve process.cwd(),filenameMin
+        shell= "node #{uglifyjs} #{cwdFilename} > #{cwdFilenameMin}"
 
         exec= require('child_process').exec
         exec shell,(stderr)->
           throw stderr if stderr?
           
-          console.log 'compiled',filenameMin
+          console.log 'Compiled',filenameMin
           process.exit()
         return
 
-      console.log 'compiled',filename
+      console.log 'Compiled',filename
       process.exit()
 
 module.exports= mainBowerOnefile
-
 ###
                                   _____  _____
                                  /      /    /

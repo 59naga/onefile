@@ -27,6 +27,9 @@ $ onefile
     -u, --uglifyjs   Use UglifyJS2 (Experimental)
 ```
 
+## Feture
+* **TEST**
+
 # License
 MIT by [@59naga](https://twitter.com/horse_n_deer)
 
