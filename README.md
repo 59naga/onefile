@@ -1,24 +1,34 @@
-# main-bower-onefile
+# mainBowerOnefile
 [![NPM version][npm-image]][npm]
-[![Build Status][travis-image]][travis]
+<!-- [![Build Status][travis-image]][travis] -->
 [![Dependency Status][depstat-image]][depstat]
+
+## Install
 ```bash
 $ npm install main-bower-onefile -g
+```
+
+## mbof
+```bash
+$ cd /path/to/bower-json-directory
+$ bower install
 $ mbof bower_components.js
+# compiled bower_components.js
 ```
 
 ## help
 ```bash
 $ mbof
-#  Usage: mbof onefilename[.js] [options...]
-#
-#  Options:
-#
-#    -h, --help       output usage information
-#    -j, --json       Use [./bower.json]
-#    -d, --directory  Use [./bower_components]
-#    -r, --rc         Use [./.bowerrc]
-#    -u, --uglifyjs   Use UglifyJS2 (Experimental)
+
+  Usage: mbof onefilename[.js] [options...]
+
+  Options:
+
+    -h, --help       output usage information
+    -j, --json       Use [./bower.json]
+    -d, --directory  Use [./bower_components]
+    -r, --rc         Use [./.bowerrc]
+    -u, --uglifyjs   Use UglifyJS2 (Experimental)
 ```
 
 # License
