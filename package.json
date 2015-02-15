@@ -1,0 +1,25 @@
+{
+  "name": "main-bower-onefile",
+  "main": "main-bower-onefile.coffee",
+  "version": "0.0.1",
+  "description": "Compile bower.json to bower_components.js",
+  "bin": {
+    "mbof": "./bin/mbof"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install && bower install && node ./bin/mbof bower_components.js -u"
+  },
+  "author": "59naga",
+  "license": "MIT",
+
+  "dependencies": {
+    "coffee-script": "^1.9.0",
+    "commander": "^2.6.0",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.0",
+    "gulp-jsfy": "^0.1.3",
+    "main-bower-files": "^2.5.0",
+    "uglify-js": "^2.4.16"
+  }
+}
