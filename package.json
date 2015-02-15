@@ -1,7 +1,7 @@
 {
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Compile bower.json to bower_components.js",
   "bin": {
     "onefile": "./bin/onefile"
