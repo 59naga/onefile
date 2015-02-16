@@ -46,6 +46,7 @@ mainBowerOnefile=
       execFilenameMin= path.resolve process.cwd(),filenameMin
       execScript= "#{execName} #{execFilename} -o #{execFilenameMin}"
       execScript+= " --source-map #{execFilenameMin}.map" if commander.sourcemap
+      execScript+= " --source-map-url #{path.basename execFilenameMin}.map" if commander.sourcemap
       exec execScript,(stderr)->
         throw stderr if stderr?
         
