@@ -90,9 +90,6 @@ use packages.js
 </html>
 ```
 
-## Feture
-* **TEST**
-
 # License
 MIT by [@59naga](https://twitter.com/horse_n_deer)
 
