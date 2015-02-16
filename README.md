@@ -4,7 +4,7 @@
 $ npm install main-bower-onefile -g
 ```
 
-## onefile
+## onefile CLI
 ```bash
 $ cd /path/to/bower-json-directory
 $ bower install
