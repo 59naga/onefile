@@ -1,4 +1,7 @@
 # mainBowerOnefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+
+![CLI Example](https://qiita-image-store.s3.amazonaws.com/0/28576/58d3351b-964b-f117-650e-96450540b2db.png)
+
 ## Install
 ```bash
 $ npm install main-bower-onefile -g
