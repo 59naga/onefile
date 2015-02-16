@@ -27,6 +27,64 @@ $ onefile
     -u, --uglifyjs   Use UglifyJS2 (Experimental)
 ```
 
+## Support extension
+* js
+* css
+  * Convert to base64-datauri by `url()`
+
+### Example
+```json
+{
+  "name": "animate2js",
+  "dependencies": {
+    "animate.css": "~3.2.0"
+  }
+}
+```
+
+```bash
+$ bower install
+$ tree 
+.
+├── bower.json
+└── bower_components
+    └── animate.css
+$ onefile bundle
+# Compiled bundle.js
+
+$ tree 
+.
+├── bundle.js
+├── bower.json
+└── bower_components
+    └── animate.css
+```
+
+bundle.js
+```js
+(function(){
+  var link=document.createElement('link');
+  link.setAttribute('data-name','animate');
+  link.setAttribute('rel','stylesheet');
+  link.setAttribute('href',"data:text/css;charset=utf8;base64,QGNoYXJzZXQgIlVU..."
+  document.head.appendChild(link);
+})();
+```
+
+use bundle.js
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="bundle.js"></script>
+</head>
+<body>
+  <h1 class="animated bounce">Hi</h1>
+</body>
+</html>
+```
+
 ## Feture
 * **TEST**
 
