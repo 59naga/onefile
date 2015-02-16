@@ -1,4 +1,4 @@
-# mainBowerOnefile [![NPM version][npm-image]][npm]
+# mainBowerOnefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
 ## Install
 ```bash
 $ npm install main-bower-onefile -g
@@ -8,23 +8,25 @@ $ npm install main-bower-onefile -g
 ```bash
 $ cd /path/to/bower-json-directory
 $ bower install
-$ onefile bower_components.js
-# compiled bower_components.js
+$ onefile packages
+# Compiled packages.js
 ```
 
 ## help
 ```bash
 $ onefile
-
   Usage: onefile name[.js] [options...]
 
   Options:
 
-    -h, --help       output usage information
-    -j, --json       Use [./bower.json]
-    -d, --directory  Use [./bower_components]
-    -r, --rc         Use [./.bowerrc]
-    -u, --uglifyjs   Use UglifyJS2 (Experimental)
+    -h, --help              output usage information
+    -V, --version           output the version number
+    -u, --uglifyjs          Use UglifyJS2 (Experimental)
+    -s, --sourcemap         Use UglifyJS2 sourcemap (Experimental)
+    -j, --json      <path>  Use <bower.json>
+    -d, --directory <path>  Use <bower_components>
+    -r, --rc        <path>  Use <.bowerrc>
+    -v, --verbose           Output filenames
 ```
 
 ## Support extension
@@ -49,18 +51,18 @@ $ tree
 ├── bower.json
 └── bower_components
     └── animate.css
-$ onefile bundle
-# Compiled bundle.js
+$ onefile packages
+# Compiled packages.js
 
 $ tree 
 .
-├── bundle.js
+├── packages.js
 ├── bower.json
 └── bower_components
     └── animate.css
 ```
 
-bundle.js
+packages.js
 ```js
 (function(){
   var link=document.createElement('link');
@@ -71,13 +73,13 @@ bundle.js
 })();
 ```
 
-use bundle.js
+use packages.js
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="bundle.js"></script>
+  <script src="packages.js"></script>
 </head>
 <body>
   <h1 class="animated bounce">Hi</h1>

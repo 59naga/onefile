@@ -1,15 +1,17 @@
 {
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
-  "version": "0.0.6",
-  "description": "Compile bower.json to bower_components.js",
+  "version": "0.0.7",
+  "description": "CLI compiler bower.json to bower_components.js",
   "bin": {
     "onefile": "./bin/onefile"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && bower install && node ./bin/onefile bower_components.js -u",
-    "version": "node ./bin/onefile --version"
+    "pretest": "npm install && bower install",
+    "test": "node ./bin/onefile test/bundle -usv",
+
+    "version": "node ./bin/onefile --version",
+    "help": "node ./bin/onefile"
   },
 
   "dependencies": {
@@ -27,6 +29,7 @@
   "keywords": [
     "main-bower-files",
     "concat",
+    "cli",
     "command",
     "js",
     "css"
