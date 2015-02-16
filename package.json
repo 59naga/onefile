@@ -1,14 +1,15 @@
 {
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Compile bower.json to bower_components.js",
   "bin": {
     "onefile": "./bin/onefile"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && bower install && node ./bin/onefile bower_components.js -u"
+    "start": "npm install && bower install && node ./bin/onefile bower_components.js -u",
+    "version": "node ./bin/onefile --version"
   },
 
   "dependencies": {

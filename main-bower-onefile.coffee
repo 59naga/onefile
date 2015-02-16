@@ -2,11 +2,11 @@ mainBowerOnefile=
   bin: ->
     commander= require 'commander'
     commander
+      .version require('./package.json').version
       .usage 'name[.js] [options...]'
       .option '-j, --json'      ,'Use [./bower.json]'      ,'./bower.json'
       .option '-d, --directory' ,'Use [./bower_components]','./bower_components'
       .option '-r, --rc'        ,'Use [./.bowerrc]'        ,'./.bowerrc'
-
       .option '-u, --uglifyjs'  ,'Use UglifyJS2 (Experimental)'
       .parse process.argv
     commander.help() if commander.args.length is 0
