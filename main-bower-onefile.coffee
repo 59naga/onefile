@@ -41,9 +41,10 @@ mainBowerOnefile=
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
+      execName= "node #{path.dirname(__filename)}/node_modules/uglify-js/bin/uglifyjs"
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
-      execScript= "uglifyjs #{execFilename} -o #{execFilenameMin}"
+      execScript= "#{execName} #{execFilename} -o #{execFilenameMin}"
       execScript+= " --source-map #{execFilenameMin}.map" if commander.sourcemap
       exec execScript,(stderr)->
         throw stderr if stderr?
