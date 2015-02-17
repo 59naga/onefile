@@ -6,10 +6,11 @@ mainBowerOnefile=
       .usage 'name[.js] [options...]'
       .option '-u, --uglifyjs        ','Use UglifyJS2 (Experimental)'
       .option '-s, --sourcemap       ','Use UglifyJS2 sourcemap (Experimental)'
+      .option '-v, --verbose         ','Output filenames'
+
       .option '-j, --json      <path>','Use <bower.json>'      ,'bower.json'
       .option '-d, --directory <path>','Use <bower_components>','bower_components'
       .option '-r, --rc        <path>','Use <.bowerrc>'        ,'.bowerrc'
-      .option '-v, --verbose         ','Output filenames'
       .parse process.argv
     commander.help() if commander.args.length is 0
 
@@ -44,6 +45,7 @@ mainBowerOnefile=
       execName= "node #{path.dirname(__filename)}/node_modules/uglify-js/bin/uglifyjs"
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
+      
       execScript= "#{execName} #{execFilename} -o #{execFilenameMin}"
       execScript+= " --source-map #{execFilenameMin}.map" if commander.sourcemap
       execScript+= " --source-map-url #{path.basename execFilenameMin}.map" if commander.sourcemap
@@ -55,9 +57,3 @@ mainBowerOnefile=
         process.exit()
 
 module.exports= mainBowerOnefile
-###                               _____  _____
-                                 /      /    /
-                                /____  /____/
-                                    /      /
-                              _____/ _____/
-###

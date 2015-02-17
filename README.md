@@ -1,13 +1,11 @@
 # mainBowerOnefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
 
-![CLI Example](https://qiita-image-store.s3.amazonaws.com/0/28576/f3e3b5a6-5053-7d93-9f72-df816e2bc9df.png)
-
-## Install
+## Installation
 ```bash
 $ npm install main-bower-onefile -g
 ```
 
-## onefile CLI
+## CLI
 ```bash
 $ cd /path/to/bower-json-directory
 $ bower install
@@ -15,22 +13,25 @@ $ onefile packages
 # Compiled packages.js
 ```
 
-## help
-```bash
-$ onefile
-  Usage: onefile name[.js] [options...]
+## CLI Options
+`onefile name[.js] [options...]` Export `name.js`
 
-  Options:
+* -u, --uglifyjs
+  * Use [UglifyJS2][1], Export `name.min.js`
+* -s, --sourcemap
+  * Use [UglifyJS2][1] sourcemap, Export `name.min.js.map` 
+* -v, --verbose
+  * Output filenames into onefile
+* [main-bower-files][2] options
+  * -j, --json &lt;path&gt;
+    * Use &lt;bower.json&gt;
+  * -d, --directory &lt;path&gt;
+    * Use &lt;bower_components&gt;
+  * -r, --rc &lt;path&gt;
+    * Use &lt;.bowerrc&gt;
 
-    -h, --help              output usage information
-    -V, --version           output the version number
-    -u, --uglifyjs          Use UglifyJS2 (Experimental)
-    -s, --sourcemap         Use UglifyJS2 sourcemap (Experimental)
-    -j, --json      <path>  Use <bower.json>
-    -d, --directory <path>  Use <bower_components>
-    -r, --rc        <path>  Use <.bowerrc>
-    -v, --verbose           Output filenames
-```
+[1]: https://github.com/mishoo/UglifyJS2
+[2]: https://github.com/ck86/main-bower-files
 
 ## Support extension
 * js

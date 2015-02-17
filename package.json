@@ -2,7 +2,7 @@
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
   "version": "0.0.9",
-  "description": "CLI compiler bower.json to bower_components.js",
+  "description": "Concat js and css by bower.json",
   "bin": {
     "onefile": "./bin/onefile"
   },
@@ -27,10 +27,9 @@
   "author": "59naga",
   "license": "MIT",
   "keywords": [
-    "main-bower-files",
-    "concat",
     "cli",
-    "command",
+    "concat",
+    "main-bower-files",
     "js",
     "css"
   ],
