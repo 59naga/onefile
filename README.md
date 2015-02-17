@@ -38,6 +38,7 @@ $ onefile
   * Convert to base64-datauri by `url()`
 
 ### Example
+bower.json
 ```json
 {
   "name": "animate2js",
