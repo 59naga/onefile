@@ -19,7 +19,7 @@ $ onefile packages
 * -u, --uglifyjs
   * Use [UglifyJS2][1], Export `name.min.js`
 * -s, --sourcemap
-  * Use [UglifyJS2][1] sourcemap, Export `name.min.js.map` 
+  * Use [UglifyJS2][1], sourcemap, Export `name.min.js.map` 
 * -v, --verbose
   * Output filenames into onefile
 * [main-bower-files][2] options
@@ -30,13 +30,14 @@ $ onefile packages
   * -r, --rc &lt;path&gt;
     * Use &lt;.bowerrc&gt;
 
-[1]: https://github.com/mishoo/UglifyJS2
-[2]: https://github.com/ck86/main-bower-files
-
 ## Support extension
 * js
 * css
-  * Convert to base64-datauri by `url()`
+  * Use [gulp-jsfy][3], Convert to standalone-css
+
+[1]: https://github.com/mishoo/UglifyJS2
+[2]: https://github.com/ck86/main-bower-files
+[3]: https://github.com/59naga/gulp-jsfy
 
 ### Example
 bower.json
