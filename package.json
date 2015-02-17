@@ -7,13 +7,13 @@
     "onefile": "./bin/onefile"
   },
   "scripts": {
-    "pretest": "npm install && bower install",
-    "test": "node ./bin/onefile test/bundle -usv",
-
+    "test": "jasminetea . -vt 20000",
+    "start": "jasminetea . -vw",
+    "oldpretest": "npm install && bower install",
+    "oldtest": "node ./bin/onefile test/bundle -usv",
     "version": "node ./bin/onefile --version",
     "help": "node ./bin/onefile"
   },
-
   "dependencies": {
     "coffee-script": "^1.9.0",
     "commander": "^2.6.0",
@@ -23,7 +23,11 @@
     "main-bower-files": "^2.5.0",
     "uglify-js": "^2.4.16"
   },
-  
+  "devDependencies": {
+    "gulp-bower": "0.0.10",
+    "gulp-src-files": "0.0.15",
+    "jasminetea": "0.0.2"
+  },
   "author": "59naga",
   "license": "MIT",
   "keywords": [
