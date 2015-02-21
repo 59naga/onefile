@@ -61,7 +61,9 @@ $ tree
     └── animate.css
 $ onefile packages
 # Compiled packages.js
+```
 
+```
 $ tree 
 .
 ├── packages.js
