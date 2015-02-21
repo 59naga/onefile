@@ -44,7 +44,7 @@ mainBowerOnefile=
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
-      execName= "node #{path.dirname(__filename)}/node_modules/uglify-js/bin/uglifyjs"
+      execName= "node "+ path.resolve require.resolve('uglify-js'),'../../bin/uglifyjs'
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
       
