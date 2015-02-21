@@ -4,13 +4,14 @@ mainBowerOnefile=
     commander
       .version require('./package.json').version
       .usage 'name[.js] [options...]'
-      .option '-u, --uglifyjs        ','Use UglifyJS2 (Experimental)'
-      .option '-s, --sourcemap       ','Use UglifyJS2 sourcemap (Experimental)'
-      .option '-v, --verbose         ','Output filenames'
+      .option '-u, --uglifyjs         ','Use UglifyJS2 (Experimental)'
+      .option '-s, --sourcemap        ','Use UglifyJS2 sourcemap (Experimental)'
+      .option '-v, --verbose          ','Output filenames'
 
-      .option '-j, --json      <path>','Use <bower.json>'      ,'bower.json'
-      .option '-d, --directory <path>','Use <bower_components>','bower_components'
-      .option '-r, --rc        <path>','Use <.bowerrc>'        ,'.bowerrc'
+      .option '-j, --json       <path>','Use <bower.json>'      ,'bower.json'
+      .option '-d, --directory  <path>','Use <bower_components>','bower_components'
+      .option '-r, --rc         <path>','Use <.bowerrc>'        ,'.bowerrc'
+      .option '-D, --includeDev       ','Use devDependencies   '
       .parse process.argv
     commander.help() if commander.args.length is 0
 
@@ -31,6 +32,7 @@ mainBowerOnefile=
         bowerJson     : path.resolve process.cwd(),commander.json
         bowerDirectory: path.resolve process.cwd(),commander.directory
         bowerrc       : path.resolve process.cwd(),commander.rc
+      includeDev      : commander.includeDev
     
     gulp= Gulp.src (mbf mbfOptions).concat ['!**/*.!(*js|*css)']# Ignore unsupport extension
     gulp.on 'data',(file)-> console.log 'Add',path.relative process.cwd(),file.path if commander.verbose
@@ -42,7 +44,7 @@ mainBowerOnefile=
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
-      execName= "node #{path.dirname(__filename)}/node_modules/uglify-js/bin/uglifyjs"
+      execName= "uglifyjs"
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
       

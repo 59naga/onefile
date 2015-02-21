@@ -20,7 +20,7 @@ for json in jsons
 
       it 'Build',(done)->
         execScript= "node ./bin/onefile"
-        execScript+= " #{cwd}/bundle -usv"
+        execScript+= " #{cwd}/bundle -usvD"
         execScript+= " -j #{cwd}/bower.json"
         execScript+= " -d #{cwd}/bower_components"
         require('child_process').exec execScript,(stderr)->

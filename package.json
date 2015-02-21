@@ -1,7 +1,7 @@
 {
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Concat js and css by bower.json",
   "bin": {
     "onefile": "./bin/onefile"
@@ -9,8 +9,8 @@
   "scripts": {
     "test": "jasminetea . -vt 20000",
     "start": "jasminetea . -vw",
-    "oldpretest": "npm install && bower install",
-    "oldtest": "node ./bin/onefile test/bundle -usv",
+
+    "oldtest": "node ./bin/onefile test/example03/bundle -usvD -j test/example03/bower.json -d test/example03/bower_components",
     "version": "node ./bin/onefile --version",
     "help": "node ./bin/onefile"
   },

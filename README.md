@@ -29,6 +29,8 @@ $ onefile packages
     * Use &lt;bower_components&gt;
   * -r, --rc &lt;path&gt;
     * Use &lt;.bowerrc&gt;
+  * -D, --includeDev
+    * Use devDependencies
 
 ## Support extension
 * js
