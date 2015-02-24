@@ -1,7 +1,7 @@
 {
   "name": "main-bower-onefile",
   "main": "main-bower-onefile.coffee",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Concat js and css by bower.json",
   "bin": {
     "onefile": "./bin/onefile"
@@ -11,7 +11,6 @@
     "posttest": "rm test/example0*/packages*",
     "start": "jasminetea . -vw",
 
-    "oldtest": "node ./bin/onefile test/example03/bundle -usvD -j test/example03/bower.json -d test/example03/bower_components",
     "version": "node ./bin/onefile --version",
     "help": "node ./bin/onefile"
   },
@@ -29,15 +28,16 @@
     "gulp-src-files": "0.0.15",
     "jasminetea": "0.0.2"
   },
-  "author": "59naga",
-  "license": "MIT",
   "keywords": [
     "cli",
     "concat",
     "main-bower-files",
     "js",
+    "css2js",
     "css"
   ],
+  "author": "59naga",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/59naga/main-bower-onefile.git"

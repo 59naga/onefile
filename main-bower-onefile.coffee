@@ -1,5 +1,5 @@
 mainBowerOnefile=
-  bin: ->
+  cli: ->
     commander= require 'commander'
     commander
       .version require('./package.json').version
@@ -35,12 +35,12 @@ mainBowerOnefile=
       includeDev      : commander.includeDev
     
     gulp= Gulp.src (mbf mbfOptions).concat ['!**/*.!(*js|*css)']# Ignore unsupport extension
-    gulp.on 'data',(file)-> console.log 'Add',path.relative process.cwd(),file.path if commander.verbose
+    gulp.on 'data',(file)-> console.log '+',path.relative process.cwd(),file.path if commander.verbose
     gulp= gulp.pipe jsfy dataurl:true
     gulp= gulp.pipe concat basename
     gulp= gulp.pipe Gulp.dest dirname
     gulp.on 'end',->
-      console.log 'Compiled',filename
+      console.log '=',filename
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
@@ -54,8 +54,8 @@ mainBowerOnefile=
       exec execScript,(stderr)->
         throw stderr if stderr?
         
-        console.log 'Compiled',filenameMin
-        console.log 'Compiled',filenameMin+'.map' if commander.sourcemap
+        console.log '=',filenameMin
+        console.log '=',filenameMin+'.map' if commander.sourcemap
         process.exit()
 
 module.exports= mainBowerOnefile

@@ -10,7 +10,7 @@ $ npm install main-bower-onefile -g
 $ cd /path/to/bower-json-directory
 $ bower install
 $ onefile packages
-# Compiled packages.js
+# = packages.js
 ```
 
 ## CLI Options
@@ -59,8 +59,9 @@ $ tree
 ├── bower.json
 └── bower_components
     └── animate.css
-$ onefile packages
-# Compiled packages.js
+$ onefile packages -v
+# + bower_components/animate.css/animate.css
+# = packages.js
 ```
 
 ```
