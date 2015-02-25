@@ -20,6 +20,8 @@ $ onefile packages
   * Use [UglifyJS2][1], Export `name.min.js`
 * -s, --sourcemap
   * Use [UglifyJS2][1], sourcemap, Export `name.min.js.map` 
+* -m, --mangle
+  * Use [UglifyJS2][1], Mangle names/pass
 * -v, --verbose
   * Output filenames into onefile
 * [main-bower-files][2] options
@@ -60,8 +62,8 @@ $ tree
 └── bower_components
     └── animate.css
 $ onefile packages -v
-# + bower_components/animate.css/animate.css
-# = packages.js
+# + bower_components/animate.css/animate.css.js 97.48 kB
+# = packages.js 97.48 kB
 ```
 
 ```

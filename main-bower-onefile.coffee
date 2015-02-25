@@ -4,8 +4,9 @@ mainBowerOnefile=
     commander
       .version require('./package.json').version
       .usage 'name[.js] [options...]'
-      .option '-u, --uglifyjs         ','Use UglifyJS2 (Experimental)'
-      .option '-s, --sourcemap        ','Use UglifyJS2 sourcemap (Experimental)'
+      .option '-u, --uglifyjs         ','Use UglifyJS2'
+      .option '-s, --sourcemap        ','Use UglifyJS2 sourcemap'
+      .option '-m, --mangle           ','Use UglifyJS2 Mangle names/pass'
       .option '-v, --verbose          ','Output filenames'
 
       .option '-j, --json       <path>','Use <bower.json>'      ,'bower.json'
@@ -15,6 +16,8 @@ mainBowerOnefile=
       .parse process.argv
     commander.help() if commander.args.length is 0
 
+    fs    = require 'fs'
+    pb    = require 'pretty-bytes'
     path  = require 'path'
     Gulp  = require 'gulp'
     mbf   = require 'main-bower-files'
@@ -35,12 +38,13 @@ mainBowerOnefile=
       includeDev      : commander.includeDev
     
     gulp= Gulp.src (mbf mbfOptions).concat ['!**/*.!(*js|*css)']# Ignore unsupport extension
-    gulp.on 'data',(file)-> console.log '+',path.relative process.cwd(),file.path if commander.verbose
     gulp= gulp.pipe jsfy dataurl:true
+    gulp.on 'data',(file)-> console.log '+',path.relative(process.cwd(),file.path),pb(file.contents.length) if commander.verbose
     gulp= gulp.pipe concat basename
     gulp= gulp.pipe Gulp.dest dirname
     gulp.on 'end',->
-      console.log '=',filename
+      console.log '' if commander.verbose
+      console.log '=',filename,pb(fs.statSync(filename).size)
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
@@ -48,14 +52,18 @@ mainBowerOnefile=
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
       
-      execScript= "#{execName} #{execFilename} -o #{execFilenameMin}"
+      execScript= "#{execName} #{execFilename}"
+      execScript+= " -o #{execFilenameMin}"
+      execScript+= " -m" if commander.mangle
       execScript+= " --source-map #{execFilenameMin}.map" if commander.sourcemap
       execScript+= " --source-map-url #{path.basename execFilenameMin}.map" if commander.sourcemap
       exec execScript,(stderr)->
         throw stderr if stderr?
-        
-        console.log '=',filenameMin
-        console.log '=',filenameMin+'.map' if commander.sourcemap
+
+        to= '='
+        to= '≒' if commander.mangle
+        console.log to,filenameMin,pb(fs.statSync(filenameMin).size)
+        console.log to,filenameMin+'.map',pb(fs.statSync(filenameMin+'.map').size) if commander.sourcemap
         process.exit()
 
 module.exports= mainBowerOnefile

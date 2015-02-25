@@ -23,8 +23,9 @@ for json in jsons
         execScript+= " #{cwd}/packages -usvD"
         execScript+= " -j #{cwd}/bower.json"
         execScript+= " -d #{cwd}/bower_components"
-        require('child_process').exec execScript,(stderr)->
+        require('child_process').exec execScript,(stderr,stdout)->
           throw stderr if stderr?
+          console.log stdout
 
           sourcemap= fs.readFileSync "#{cwd}/packages.min.js.map"
 
