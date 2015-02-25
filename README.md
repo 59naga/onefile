@@ -23,7 +23,7 @@ $ onefile packages
 * -m, --mangle
   * Use [UglifyJS2][1], Mangle names/pass
 * -v, --verbose
-  * Output filenames into onefile
+  * Output filenames & bytes into onefile
 * [main-bower-files][2] options
   * -j, --json &lt;path&gt;
     * Use &lt;bower.json&gt;
