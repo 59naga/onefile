@@ -10,8 +10,8 @@ for json in jsons
   cwd= path.dirname json
 
   do (cwd)->
-    describe 'Install and Build',->
-      it 'Install',(done)->
+    describe 'Build',->
+      beforeEach (done)->
         bower cwd:cwd,directory:"bower_components"
         .on 'data',-> null
         .on 'end',->

@@ -37,12 +37,19 @@ mainBowerOnefile=
         bowerrc       : path.resolve process.cwd(),commander.rc
       includeDev      : commander.includeDev
     
+    i= 0
     gulp= Gulp.src (mbf mbfOptions).concat ['!**/*.!(*js|*css)']# Ignore unsupport extension
     gulp= gulp.pipe jsfy dataurl:true
-    gulp.on 'data',(file)-> console.log '+',path.relative(process.cwd(),file.path),pb(file.contents.length) if commander.verbose
+    gulp.on 'data',(file)->
+      if file.contents?.length
+        console.log '+',path.relative(process.cwd(),file.path),pb(file.contents?.length) if commander.verbose
+        i++ 
+        
     gulp= gulp.pipe concat basename
     gulp= gulp.pipe Gulp.dest dirname
     gulp.on 'end',->
+      throw new Error('Invaild "main" file by bower_components/**/bower.json') if i is 0
+
       console.log '' if commander.verbose
       console.log '=',filename,pb(fs.statSync(filename).size)
       process.exit() if commander.uglifyjs is undefined
