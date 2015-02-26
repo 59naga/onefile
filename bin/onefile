@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var path,cwd,mbo;
+var path,cwd,root;
 path= require('path');
 pwd= path.dirname(require('fs').realpathSync(__filename));
-mbo= path.join(pwd,'../');
+root= path.join(pwd,'../');
 
 require('coffee-script/register');
-require(mbo+'main-bower-onefile').cli();
+require(root+require(root+'package.json').main).cli();

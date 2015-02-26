@@ -1,6 +1,6 @@
 {
-  "name": "main-bower-onefile",
-  "main": "main-bower-onefile.coffee",
+  "name": "onefile",
+  "main": "onefile.coffee",
   "version": "0.1.0",
   "description": "Concat js and css by bower.json",
   "bin": {
@@ -40,10 +40,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/59naga/main-bower-onefile.git"
+    "url": "https://github.com/59naga/onefile.git"
   },
   "bugs": {
-    "url": "https://github.com/59naga/main-bower-onefile/issues"
+    "url": "https://github.com/59naga/onefile/issues"
   },
-  "homepage": "https://github.com/59naga/main-bower-onefile"
+  "homepage": "https://github.com/59naga/onefile"
 }

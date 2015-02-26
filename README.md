@@ -1,8 +1,10 @@
-# mainBowerOnefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+# Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+
+Concat js and css by bower.json
 
 ## Installation
 ```bash
-$ npm install main-bower-onefile -g
+$ npm install onefile -g
 ```
 
 ## CLI
@@ -103,9 +105,9 @@ use packages.js
 # License
 MIT by [@59naga](https://twitter.com/horse_n_deer)
 
-[npm-image]: https://badge.fury.io/js/main-bower-onefile.svg
-[npm]: https://npmjs.org/package/main-bower-onefile
-[travis-image]: https://travis-ci.org/59naga/main-bower-onefile.svg?branch=master
-[travis]: https://travis-ci.org/59naga/main-bower-onefile
-[depstat-image]: https://gemnasium.com/59naga/main-bower-onefile.svg
-[depstat]: https://gemnasium.com/59naga/main-bower-onefile
+[npm-image]: https://badge.fury.io/js/onefile.svg
+[npm]: https://npmjs.org/package/onefile
+[travis-image]: https://travis-ci.org/59naga/onefile.svg?branch=master
+[travis]: https://travis-ci.org/59naga/onefile
+[depstat-image]: https://gemnasium.com/59naga/onefile.svg
+[depstat]: https://gemnasium.com/59naga/onefile
