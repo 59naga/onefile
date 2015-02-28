@@ -102,6 +102,9 @@ use packages.js
 </html>
 ```
 
+## TODO
+* API without CLI
+
 # License
 MIT by [@59naga](https://twitter.com/horse_n_deer)
 
