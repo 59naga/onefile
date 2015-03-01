@@ -5,8 +5,8 @@
   "version": "0.1.3",
   "description": "Concat js and css by bower.json",
   "scripts": {
-    "test": "jasminetea . -vt 20000",
-    "posttest": "rm test/example0*/packages*",
+    "test": "jasminetea . -vt 20000 && npm link && jasminetea . -vt 20000",
+    "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
     "start": "jasminetea . -vw",
     "version": "node onefile --version",
     "help": "node onefile"
