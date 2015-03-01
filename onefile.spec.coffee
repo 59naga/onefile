@@ -1,3 +1,5 @@
+cli= './onefile'
+
 gulpSrcFiles= require 'gulp-src-files'
 jsons= gulpSrcFiles 'test/example*/bower.json'
 
@@ -19,7 +21,7 @@ for json in jsons
           done()
 
       it 'Build',(done)->
-        execScript= "node ./bin/onefile"
+        execScript= "node "+cli
         execScript+= " #{cwd}/packages -usvD"
         execScript+= " -j #{cwd}/bower.json"
         execScript+= " -d #{cwd}/bower_components"

@@ -1,4 +1,4 @@
-mainBowerOnefile=
+onefile=
   cli: ->
     commander= require 'commander'
     commander
@@ -55,7 +55,7 @@ mainBowerOnefile=
       process.exit() if commander.uglifyjs is undefined
 
       exec= require('child_process').exec
-      execName= "node "+ path.resolve require.resolve('uglify-js'),'../../bin/uglifyjs'
+      execName= "node "+ require.resolve 'uglify-js/bin/uglifyjs'
       execFilename= path.resolve process.cwd(),filename
       execFilenameMin= path.resolve process.cwd(),filenameMin
       
@@ -73,4 +73,4 @@ mainBowerOnefile=
         console.log to,filenameMin+'.map',pb(fs.statSync(filenameMin+'.map').size) if commander.sourcemap
         process.exit()
 
-module.exports= mainBowerOnefile
+module.exports= onefile

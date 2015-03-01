@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-
-var path,cwd,root;
-path= require('path');
-pwd= path.dirname(require('fs').realpathSync(__filename));
-root= path.join(pwd,'../');
-
-require('coffee-script/register');
-require(root+require(root+'package.json').main).cli();
