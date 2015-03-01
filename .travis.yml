@@ -1,14 +1,13 @@
 language: node_js
 node_js:
-  - iojs
-  - 0.12
-  - 0.11
-  - 0.10
-before_script: 'npm install -g bower'
-script: 'npm test'
-
+- iojs
+- 0.12
+- 0.11
+- 0.1
+before_script: npm install -g bower
+script: npm test
 deploy:
   provider: npm
   email: i59naga@icloud.com
   api_key:
-    secure: ZVqgbDpGjUL/Y0lEkcCaJH2GxRiuLrgCqr0qdo6DrWlxQHY9nWoMPrnyasq/qFAfMMxB8l+4117JhjwPaJAMa31CfHvrrl+A3kF3kbu2Hsg/3ScWvHgqvO7qjaeIo4ij62kWwzlwqDGS3+MAveKweIDzPP7yZ/NN7oFIyBnGWBA=
+    secure: D6VTQ/gzVtYVnYjDbRZzh8SBgPtcO8PVU7LcklLWxvsabuTEg5jro44yW1tfFlhFlB/rH+zRyIwMkbZRsWx8wn0P1Fz0wMuI77oX0AEVtqGUKdGs5l4hApatNxQQGgidJOOvypRy4a7N9Zw8UphkOiyDUwOo65H4YydgjdzZaiA=
