@@ -1,6 +1,6 @@
-# ![onefile](.png) Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
+# ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
 
-> Concat js and css by bower.json
+> Concatenate js and css to bundle.js. by bower.json
 
 ## Installation
 ```bash
@@ -101,12 +101,11 @@ use packages.js
 ## TODO
 * API without CLI
 
-# License
-MIT by [@59naga](https://twitter.com/horse_n_deer)
+License
+=========================
+MIT by 59naga
 
-[1]: https://github.com/mishoo/UglifyJS2
-[2]: https://github.com/ck86/main-bower-files
-[3]: https://github.com/59naga/gulp-jsfy
+[.svg]: https://cdn.rawgit.com/59naga/jasminetea/master/.svg
 
 [npm-image]: https://badge.fury.io/js/onefile.svg
 [npm]: https://npmjs.org/package/onefile
@@ -114,3 +113,7 @@ MIT by [@59naga](https://twitter.com/horse_n_deer)
 [travis]: https://travis-ci.org/59naga/onefile
 [coveralls-image]: https://coveralls.io/repos/59naga/jasminetea/badge.svg?branch=master
 [coveralls]: https://coveralls.io/r/59naga/jasminetea?branch=master
+
+[1]: https://github.com/mishoo/UglifyJS2
+[2]: https://github.com/ck86/main-bower-files
+[3]: https://github.com/59naga/gulp-jsfy

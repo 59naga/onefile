@@ -1,5 +1,3 @@
 #!/usr/bin/env node
 
-var bin= require('fs').realpathSync(__filename);
-var pkg= require('path').dirname(bin);
-require(pkg).cli();
+require('./').cli();

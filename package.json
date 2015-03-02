@@ -3,13 +3,13 @@
   "bin":  "onefile",
   "main": "onefile.pomace.js",
   "description": "Concat js and css by bower.json",
-  "version": "0.1.3",
+  "version": "0.1.4",
 
   "scripts": {
     "test": "istanbul cover jasminetea -- . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
     "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
 
-    "start": "jasminetea . -vw",
+    "start": "jasminetea . -v",
     "version": "node onefile --version",
     "help": "node onefile"
   },
@@ -21,6 +21,7 @@
     "gulp-concat": "^2.5.0",
     "gulp-jsfy": "^0.1.3",
     "main-bower-files": "^2.5.0",
+    "node-module-all": "0.0.5",
     "pretty-bytes": "^1.0.3",
     "uglify-js": "^2.4.16"
   },
@@ -29,7 +30,7 @@
     "gulp-bower": "0.0.10",
     "gulp-src-files": "0.0.15",
     "istanbul": "^0.3.6",
-    "jasminetea": "0.0.2"
+    "jasminetea": "^0.1.4"
   },
 
   "keywords": [

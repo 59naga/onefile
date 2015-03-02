@@ -14,8 +14,8 @@ gulp= require 'gulp'
 for json in jsons
   cwd= path.dirname json
 
-  describe bin,->
-    do (cwd)->
+  do (bin,cwd)->
+    describe bin,->
       describe 'Build',->
         beforeEach (done)->
           bower cwd:cwd,directory:"bower_components"
@@ -29,6 +29,7 @@ for json in jsons
           execScript+= " #{cwd}/packages -usvD"
           execScript+= " -j #{cwd}/bower.json"
           execScript+= " -d #{cwd}/bower_components"
+          console.log execScript
           require('child_process').exec execScript,(stderr,stdout)->
             throw stderr if stderr?
             console.log stdout
