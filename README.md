@@ -1,6 +1,6 @@
 # ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
 
-> Concatenate js and css to bundle.js. by bower.json
+> Concatenate js and css to packages.js. by bower.json
 
 ## Installation
 ```bash
