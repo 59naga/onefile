@@ -7,7 +7,7 @@ node_js:
 before_script: npm install -g bower
 script: npm test
 after_success:
-  - coveralls < ./coverage/lcov.info
+  - 'npm run coverage && npm run coveralls'
 
 env:
   global:

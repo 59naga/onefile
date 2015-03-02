@@ -6,8 +6,11 @@
   "version": "0.1.4",
 
   "scripts": {
-    "test": "istanbul cover jasminetea -- . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
+    "test": "jasminetea -- . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
     "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
+
+    "coverage": "ibrik cover onefile.coffee && istanbul report html",
+    "coveralls": "coveralls < ./coverage/lcov.info && rm -rf coverage",
 
     "start": "jasminetea . -v",
     "version": "node onefile --version",
@@ -30,6 +33,7 @@
     "gulp-bower": "0.0.10",
     "gulp-src-files": "0.0.15",
     "istanbul": "^0.3.6",
+    "ibrik": "^2.0.0",
     "jasminetea": "^0.1.4"
   },
 
