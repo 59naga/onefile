@@ -6,7 +6,7 @@
   "version": "0.1.4",
 
   "scripts": {
-    "test": "jasminetea -- . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
+    "test": "jasminetea . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
     "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
 
     "coverage": "ibrik cover onefile.coffee && istanbul report html",
