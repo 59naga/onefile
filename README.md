@@ -105,14 +105,14 @@ License
 =========================
 MIT by 59naga
 
-[.svg]: https://cdn.rawgit.com/59naga/jasminetea/master/.svg
+[.svg]: https://cdn.rawgit.com/59naga/onefile/master/.svg
 
 [npm-image]: https://badge.fury.io/js/onefile.svg
 [npm]: https://npmjs.org/package/onefile
 [travis-image]: https://travis-ci.org/59naga/onefile.svg?branch=master
 [travis]: https://travis-ci.org/59naga/onefile
-[coveralls-image]: https://coveralls.io/repos/59naga/jasminetea/badge.svg?branch=master
-[coveralls]: https://coveralls.io/r/59naga/jasminetea?branch=master
+[coveralls-image]: https://coveralls.io/repos/59naga/onefile/badge.svg?branch=master
+[coveralls]: https://coveralls.io/r/59naga/onefile?branch=master
 
 [1]: https://github.com/mishoo/UglifyJS2
 [2]: https://github.com/ck86/main-bower-files
