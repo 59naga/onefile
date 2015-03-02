@@ -1,6 +1,6 @@
-# Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+# Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
 
-Concat js and css by bower.json
+> Concat js and css by bower.json
 
 ## Installation
 ```bash
@@ -40,10 +40,6 @@ $ onefile packages
 * js
 * css
   * Use [gulp-jsfy][3], Convert to standalone-css
-
-[1]: https://github.com/mishoo/UglifyJS2
-[2]: https://github.com/ck86/main-bower-files
-[3]: https://github.com/59naga/gulp-jsfy
 
 ### Example
 bower.json
@@ -108,9 +104,13 @@ use packages.js
 # License
 MIT by [@59naga](https://twitter.com/horse_n_deer)
 
+[1]: https://github.com/mishoo/UglifyJS2
+[2]: https://github.com/ck86/main-bower-files
+[3]: https://github.com/59naga/gulp-jsfy
+
 [npm-image]: https://badge.fury.io/js/onefile.svg
 [npm]: https://npmjs.org/package/onefile
 [travis-image]: https://travis-ci.org/59naga/onefile.svg?branch=master
 [travis]: https://travis-ci.org/59naga/onefile
-[depstat-image]: https://gemnasium.com/59naga/onefile.svg
-[depstat]: https://gemnasium.com/59naga/onefile
+[coveralls-image]: https://coveralls.io/repos/59naga/jasminetea/badge.svg?branch=master
+[coveralls]: https://coveralls.io/r/59naga/jasminetea?branch=master

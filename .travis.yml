@@ -1,11 +1,18 @@
 language: node_js
 node_js:
 - iojs
-- 0.12
-- 0.11
-- 0.1
+- '0.12'
+- '0.11'
+- '0.10'
 before_script: npm install -g bower
 script: npm test
+after_success:
+  - coveralls < ./coverage/lcov.info
+
+env:
+  global:
+    secure: qeFyqdmPvt/ZCfN60KDES+o9+3Ebebq4XtAA1sswdN+LnarDescMIGSpNiJrP0rMncnEd78eOz8/R6m4GGcUxKRE/jX1W6buJLO5TJpAoMAK8//EF3I6AvzFvsafGRxt7ZF8xWLEh1c/iDb2zSIOBuT0DQXa3fi0Y+twlTKf90U=
+
 deploy:
   provider: npm
   email: i59naga@icloud.com
