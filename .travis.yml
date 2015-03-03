@@ -9,7 +9,7 @@ before_script:
 script:
   - 'npm test'
 after_success:
-  - 'npm run coverage && npm run coveralls'
+  - 'npm run fix_ibrik && npm run coverage && npm run coveralls'
 
 env:
   global:
