@@ -3,18 +3,14 @@
   "bin":  "onefile",
   "main": "onefile.pomace.js",
   "description": "Concat js and css by bower.json",
-  "version": "0.1.4",
+  "version": "0.1.5",
 
   "scripts": {
     "test": "jasminetea . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
     "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
 
-    "coverage": "ibrik cover onefile.coffee && istanbul report html",
-    "coveralls": "coveralls < ./coverage/lcov.info && rm -rf coverage",
-
-    "start": "jasminetea . -v",
-    "version": "node onefile --version",
-    "help": "node onefile"
+    "coverage": "ibrik cover jasminetea . -vt 20000 && istanbul report html",
+    "coveralls": "coveralls < ./coverage/lcov.info && rm -rf coverage"
   },
 
   "dependencies": {
@@ -45,7 +41,6 @@
     "css2js",
     "css"
   ],
-  
   "author": "59naga <i59naga@icloud.com> (http://berabou.me/)",
   "repository": {
     "type": "git",
