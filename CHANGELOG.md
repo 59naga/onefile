@@ -1,8 +1,14 @@
+v0.2.0 / Mar 05 2015
+=========================
+ * [`unknown`][unknown] Makeover API
+
+[unknown]: https://
+
 v0.1.4 / Mar 02 2015
 =========================
- * Codegolf [7b23d4d][7b23d4d]
- * Fix `-g` test [29fce94][29fce94]
- * Add Catching error [1f3189d][1f3189d]
+ * [`7b23d4d`][7b23d4d] Codegolf
+ * [`29fce94`][29fce94] Fix `-g` test
+ * [`1f3189d`][1f3189d] Add Catching error
 
 [7b23d4d]: https://github.com/59naga/onefile/commit/7b23d4d6085182e98252cd45ec4653247f767030
 [29fce94]: https://github.com/59naga/onefile/commit/29fce94c18479a65c925467cf2ef296a2bc83cdd

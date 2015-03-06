@@ -1,105 +1,84 @@
 # ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis] [![Coverage Status][coveralls-image]][coveralls]
 
-> Concatenate js and css to packages.js. by bower.json
+> Quick browser package installer.
+
+## Requirement
+ * [node.js][http://nodejs.org/]
+ * Terminal / [cmder][http://bliker.github.io/cmder/]
 
 ## Installation
 ```bash
-$ npm install onefile -g
+$ npm install onefile --global
 ```
 
-## CLI
-```bash
-$ cd /path/to/bower-json-directory
-$ bower install
-$ onefile packages
-# = packages.js
+## Usage
+`$ onefile <endpoint>` by [`bower packages`][http://bower.io/search/]
+
+* bootstrap
+  ```bash
+  onefile bootstrap
+
+  #Execute: bower install bootstrap ...
+  # >  not-cached git://github.com/twbs/bootstrap.git#*
+  # >  resolve git://github.com/twbs/bootstrap.git#*
+  # >  download https://github.com/twbs/bootstrap/archive/v3.3.2.tar.gz
+  # >  extract archive.tar.gz
+  # >  resolved git://github.com/twbs/bootstrap.git#3.3.2
+  # >  install bootstrap#3.3.2
+  #
+  #Combile: jquery#2.1.3 bootstrap#3.3.2 ...
+  # +   247.39 kB (cache)/bower_components/jquery/dist/jquery.js
+  # +    66.73 kB (cache)/bower_components/bootstrap/dist/js/bootstrap.js
+  # +   607.99 kB (cache)/bower_components/bootstrap/dist/css/bootstrap.css.js
+  #
+  #Result:
+  # =   922.11 kB pkgs.js
+  ```
+
+* angular
+  ```bash
+  # onefile angular angular-ui-router angular-animate animate.css
+
+  # Execute: bower install angular angular-ui-router angular-animate animate.css ...
+  #  >  not-cached git://github.com/daneden/animate.css.git#*
+  #  >  resolve git://github.com/daneden/animate.css.git#*
+  # ...
+  #
+  # Combile: angular#1.3.14 animate.css#3.2.3 angular-animate#1.3.14 angular-ui-router#0.2.13 ...
+  #  +   954.54 kB (cache)/bower_components/angular/angular.js
+  #  +   104.24 kB (cache)/bower_components/angular-animate/angular-animate.js
+  #  +   156.74 kB (cache)/bower_components/angular-ui-router/release/angular-ui-router.js
+  #  +   104.25 kB (cache)/bower_components/animate.css/animate.css.js
+  #
+  # Result:
+  #  =     1.32 MB pkgs.js
+  ```
+
+Finally, Will read from the html.
+```html
+<script src="pkgs.js"></script>
 ```
-
-## CLI Options
-`onefile name[.js] [options...]` Export `name.js`
-
-* -u, --uglifyjs
-  * Use [UglifyJS2][1], Export `name.min.js`
-* -s, --sourcemap
-  * Use [UglifyJS2][1], sourcemap, Export `name.min.js.map` 
-* -m, --mangle
-  * Use [UglifyJS2][1], Mangle names/pass
-* -v, --verbose
-  * Output filenames & bytes into onefile
-* [main-bower-files][2] options
-  * -j, --json &lt;path&gt;
-    * Use &lt;bower.json&gt;
-  * -d, --directory &lt;path&gt;
-    * Use &lt;bower_components&gt;
-  * -r, --rc &lt;path&gt;
-    * Use &lt;.bowerrc&gt;
-  * -D, --includeDev
-    * Use devDependencies
 
 ## Support extension
 * js
 * css
-  * Use [gulp-jsfy][3], Convert to standalone-css
+  * Use [gulp-jsfy][https://github.com/59naga/gulp-jsfy], Convert to standalone-css
 
-### Example
-bower.json
-```json
-{
-  "name": "animate2js",
-  "dependencies": {
-    "animate.css": "~3.2.0"
-  }
-}
-```
+## Options
+### `-o`, `--output`
+Set output `filename`. default: pkgs
+### `-u`, `--uglifyjs`
+Use [UglifyJS2][1], Export `name.min.js`
+### `-s`, `--sourcemap`
+Use [UglifyJS2][1], sourcemap, Export `name.min.js.map` 
+### `-m`, `--mangle`
+Use [UglifyJS2][1], Mangle names/pass
 
-```bash
-$ bower install
-$ tree 
-.
-├── bower.json
-└── bower_components
-    └── animate.css
-$ onefile packages -v
-# + bower_components/animate.css/animate.css.js 97.48 kB
-# = packages.js 97.48 kB
-```
-
-```
-$ tree 
-.
-├── packages.js
-├── bower.json
-└── bower_components
-    └── animate.css
-```
-
-packages.js
-```js
-(function(){
-  var link=document.createElement('link');
-  link.setAttribute('data-name','animate');
-  link.setAttribute('rel','stylesheet');
-  link.setAttribute('href',"data:text/css;charset=utf8;base64,QGNoYXJzZXQgIlVU..."
-  document.head.appendChild(link);
-})();
-```
-
-use packages.js
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <script src="packages.js"></script>
-</head>
-<body>
-  <h1 class="animated bounce">Hi</h1>
-</body>
-</html>
-```
+## `Unable to find suitable version`
+Try: Cleaning cache `onefile clean` command.
 
 ## TODO
-* API without CLI
+* __TEST__
 
 License
 =========================
@@ -113,7 +92,3 @@ MIT by 59naga
 [travis]: https://travis-ci.org/59naga/onefile
 [coveralls-image]: https://coveralls.io/repos/59naga/onefile/badge.svg?branch=master
 [coveralls]: https://coveralls.io/r/59naga/onefile?branch=master
-
-[1]: https://github.com/mishoo/UglifyJS2
-[2]: https://github.com/ck86/main-bower-files
-[3]: https://github.com/59naga/gulp-jsfy

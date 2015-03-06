@@ -1,45 +1,43 @@
 {
   "name": "onefile",
-  "bin":  "onefile",
-  "main": "onefile.pomace.js",
-  "description": "Concat js and css by bower.json",
-  "version": "0.1.5",
+  "bin" : "onefile",
+  "main": "onefile.cup.js",
+  "description": "Quick browser package downloader",
+  "version": "0.2.0",
 
   "scripts": {
-    "test": "jasminetea . -vt 20000 && npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000",
-    "posttest": "rm test/example0*/packages* && npm uninstall -g onefile",
+    "test": "jasminetea . -vct 15000",
+    "posttest": "rm pkgs*",
 
-    "fix_ibrik": "rm -rf node_modules/ibrik/node_modules/coffee-script",
-    "coverage": "ibrik cover jasminetea . -vt 20000 && istanbul report html",
+    "help": "node onefile",
+    
+    "test_global": "npm link && NODE_PATH=`npm root -g` jasminetea . -vt 20000 && npm rm onefile -g",
     "coveralls": "coveralls < ./coverage/lcov.info && rm -rf coverage"
   },
 
   "dependencies": {
-    "coffee-script": "^1.9.0",
+    "bower": "^1.3.12",
+    "chalk": "^1.0.0",
+    "coffee-script": "^1.9.1",
     "commander": "^2.6.0",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.0",
     "gulp-jsfy": "^0.1.3",
-    "main-bower-files": "^2.5.0",
-    "node-module-all": "0.0.5",
+    "gulp-sort": "^1.0.1",
+    "node-module-all": "0.0.7",
     "pretty-bytes": "^1.0.3",
+    "rimraf": "^2.2.8",
     "uglify-js": "^2.4.16"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "gulp-bower": "0.0.10",
-    "gulp-src-files": "0.0.15",
-    "istanbul": "^0.3.6",
-    "ibrik": "^2.0.0",
-    "jasminetea": "^0.1.4"
+    "jasminetea": "^0.1.10",
+    "coveralls": "^2.11.2"
   },
-
+  
   "keywords": [
+    "bower",
     "cli",
-    "concat",
-    "main-bower-files",
     "js",
-    "css2js",
     "css"
   ],
   "author": "59naga <i59naga@icloud.com> (http://berabou.me/)",

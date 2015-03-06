@@ -1,40 +1,89 @@
+onefile= require './'
 try
-  bin= 'node '+require.resolve 'onefile/onefile'
+  bin= require.resolve 'onefile/onefile'
 catch notLink
-  bin= 'node ./onefile'
+  bin= './onefile'
 
-gulpSrcFiles= require 'gulp-src-files'
-jsons= gulpSrcFiles 'test/example*/bower.json'
+{events,childProcess,fs}= require('node-module-all')
+  builtinLibs:true
+  change:'camelCase'
 
-path= require 'path'
-fs= require 'fs'
+describe 'Onefile v0.2.0 API',->
+  describe 'onefile.utilities',->
+    it '@noop is EventEmitter Fake',(done)->
+      noop= onefile.noop()
+      noop.on 'end',-> done()
+    it
 
-bower= require 'gulp-bower'
-gulp= require 'gulp'
-for json in jsons
-  cwd= path.dirname json
+  describe 'onefile by',->
+    it 'riot',(done)->
+      output= 'pkgs'
 
-  do (bin,cwd)->
-    describe bin,->
-      describe 'Build',->
-        beforeEach (done)->
-          bower cwd:cwd,directory:"bower_components"
-          .on 'data',-> null
-          .on 'end',->
+      script= [
+        'node'
+        bin
+        '-cs'
+        'riot'
+      ]
+      [script,args...]= script
 
-            done()
+      child= childProcess.spawn script,args
+      child.on 'error',(error)-> throw error
+      child.on 'close',->
+        file= "#{output}.js"
+        fileMin= "#{output}.min.js"
+        fileMinMap= "#{output}.min.js.map"
 
-        it 'Build',(done)->
-          execScript= bin
-          execScript+= " #{cwd}/packages -usvD"
-          execScript+= " -j #{cwd}/bower.json"
-          execScript+= " -d #{cwd}/bower_components"
-          console.log execScript
-          require('child_process').exec execScript,(stderr,stdout)->
-            throw stderr if stderr?
-            console.log stdout
+        expect(fs.statSync(file).size).toBeGreaterThan       15000
+        expect(fs.statSync(fileMin).size).toBeGreaterThan    10000
+        expect(fs.statSync(fileMinMap).size).toBeGreaterThan 10000
+        done()
 
-            sourcemap= fs.readFileSync "#{cwd}/packages.min.js.map"
+    it 'slick-carousel',(done)->
+      output= 'pkgs'
 
-            expect(sourcemap instanceof Buffer).toEqual(true)
-            done()
+      script= [
+        'node'
+        bin
+        '-cs'
+        'slick-carousel'
+      ]
+      [script,args...]= script
+
+      child= childProcess.spawn script,args
+      child.on 'error',(error)-> throw error
+      child.on 'close',->
+        file= "#{output}.js"
+        fileMin= "#{output}.min.js"
+        fileMinMap= "#{output}.min.js.map"
+
+        expect(fs.statSync(file).size).toBeGreaterThan       250000
+        expect(fs.statSync(fileMin).size).toBeGreaterThan    150000
+        expect(fs.statSync(fileMinMap).size).toBeGreaterThan 100000
+        done()
+
+    it 'angular angular-ui-router angular-animate animate.css',(done)->
+      output= 'pkgs'
+
+      script= [
+        'node'
+        bin
+        '-cs'
+        'angular'
+        'angular-ui-router'
+        'angular-animate'
+        'animate.css'
+      ]
+      [script,args...]= script
+
+      child= childProcess.spawn script,args
+      child.on 'error',(error)-> throw error
+      child.on 'close',->
+        file= "#{output}.js"
+        fileMin= "#{output}.min.js"
+        fileMinMap= "#{output}.min.js.map"
+
+        expect(fs.statSync(file).size).toBeGreaterThan      1000000
+        expect(fs.statSync(fileMin).size).toBeGreaterThan    400000
+        expect(fs.statSync(fileMinMap).size).toBeGreaterThan 300000
+        done()
