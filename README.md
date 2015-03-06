@@ -2,17 +2,17 @@
 
 > Quick browser package installer.
 
-## Requirement
- * [node.js][http://nodejs.org/]
- * Terminal / [cmder][http://bliker.github.io/cmder/]
+# Requirement
+ * [node.js][1]
+ * Terminal / [cmder][2]
 
 ## Installation
 ```bash
 $ npm install onefile --global
 ```
 
-## Usage
-`$ onefile <endpoint>` by [`bower packages`][http://bower.io/search/]
+# Usage
+`$ onefile <endpoint>` by [`bower packages`][3]
 
 * bootstrap
   ```bash
@@ -37,7 +37,7 @@ $ npm install onefile --global
 
 * angular
   ```bash
-  # onefile angular angular-ui-router angular-animate animate.css
+  onefile angular angular-ui-router angular-animate animate.css
 
   # Execute: bower install angular angular-ui-router angular-animate animate.css ...
   #  >  not-cached git://github.com/daneden/animate.css.git#*
@@ -59,20 +59,20 @@ Finally, Will read from the html.
 <script src="pkgs.js"></script>
 ```
 
-## Support extension
-* js
-* css
-  * Use [gulp-jsfy][https://github.com/59naga/gulp-jsfy], Convert to standalone-css
-
 ## Options
 ### `-o`, `--output`
 Set output `filename`. default: pkgs
 ### `-u`, `--uglifyjs`
-Use [UglifyJS2][1], Export `name.min.js`
+Use [UglifyJS2][5], Export `name.min.js`
 ### `-s`, `--sourcemap`
-Use [UglifyJS2][1], sourcemap, Export `name.min.js.map` 
+Use [UglifyJS2][5], sourcemap, Export `name.min.js.map` 
 ### `-m`, `--mangle`
-Use [UglifyJS2][1], Mangle names/pass
+Use [UglifyJS2][5], Mangle names/pass
+
+## Support extension
+* js
+* css
+  * Use [gulp-jsfy][4], Convert to standalone-css
 
 ## `Unable to find suitable version`
 Try: Cleaning cache `onefile clean` command.
@@ -92,3 +92,11 @@ MIT by 59naga
 [travis]: https://travis-ci.org/59naga/onefile
 [coveralls-image]: https://coveralls.io/repos/59naga/onefile/badge.svg?branch=master
 [coveralls]: https://coveralls.io/r/59naga/onefile?branch=master
+
+[1]: http://nodejs.org/
+[2]: http://bliker.github.io/cmder/
+
+[3]: http://bower.io/search/
+
+[4]: https://github.com/59naga/gulp-jsfy
+[5]: https://github.com/mishoo/UglifyJS2#usage
