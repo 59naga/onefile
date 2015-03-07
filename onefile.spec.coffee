@@ -87,3 +87,18 @@ describe 'Onefile v0.2.0 API',->
         expect(fs.statSync(fileMin).size).toBeGreaterThan    400000
         expect(fs.statSync(fileMinMap).size).toBeGreaterThan 300000
         done()
+
+    it 'jasmine(Can not combine since main is undefined)',(done)->
+      output= 'pkgs'
+
+      script= [
+        'node'
+        bin
+        '-cs'
+        'jasmine'
+      ]
+      [script,args...]= script
+
+      child= childProcess.spawn script,args
+      child.stderr.once 'data',(data)-> done()
+      child.once 'error',(error)-> done()

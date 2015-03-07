@@ -1,8 +1,14 @@
-v0.2.0 / Mar 05 2015
+v0.2.1 / Mar 08 2015
 =========================
- * [`unknown`][unknown] Makeover API
+ * [`unknown`][unknown] :white_check_mark: Fix: Can not combine since main is undefined
 
 [unknown]: https://
+
+v0.2.0 / Mar 05 2015
+=========================
+ * [`014387c`][014387c] Makeover API
+
+[014387c]: https://github.com/59naga/onefile/commit/014387cc80447e2be47ece04f15758b78b29fab8
 
 v0.1.4 / Mar 02 2015
 =========================

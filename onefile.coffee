@@ -31,10 +31,11 @@ onefile=
 
       targets= {}
       targets[config.name]= "#{config.name}##{config.version}" for config in resolvedConfigs
-      throw new Error 'Invalid config',configs if Object.keys(targets).length is 0
-      @h1 "Combile:",(version for target,version of targets).join(' '),'...'
+      versions= (version for target,version of targets).join(' ')
+      @h1 "Combile:",versions,'...'
 
       files= @getMainFiles resolvedConfigs
+      throw new Error('Invalid configuration packages: '+versions) if Object.keys(targets).length is 0 or files.length is 0
 
       combine= @combine files,cli.output
       combine.on 'data',(gutilFile)=>
@@ -151,6 +152,11 @@ onefile=
     for config in configs
       config.main= [config.main] if not (config.main instanceof Array)
       for file in config.main
+        console.log @cwd,@directory,config.main,file
+        if file is undefined
+          @log "Warn: \"main\" is undefined to the #{path.join @cwd,@directory,config.name}/bower.json"
+          continue;
+
         files.push path.join @cwd,@directory,config.name,file
 
     files
