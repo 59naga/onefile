@@ -1,7 +1,9 @@
-v0.2.1 / Mar 08 2015
+v0.2.2 / Mar 08 2015
 =========================
- * [`unknown`][unknown] :white_check_mark: Fix: Can not combine since main is undefined
+ * [`8589e69`][8589e69] :white_check_mark: Fix: Can not combine since main is undefined
+ * [`unknown`][unknown] :bug: Hide debug log
 
+[8589e69]: https://github.com/59naga/onefile/commit/8589e6910e4ef0e8524deb1eedb137a9fecd8145
 [unknown]: https://
 
 v0.2.0 / Mar 05 2015

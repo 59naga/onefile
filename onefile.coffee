@@ -152,7 +152,6 @@ onefile=
     for config in configs
       config.main= [config.main] if not (config.main instanceof Array)
       for file in config.main
-        console.log @cwd,@directory,config.main,file
         if file is undefined
           @log "Warn: \"main\" is undefined to the #{path.join @cwd,@directory,config.name}/bower.json"
           continue;

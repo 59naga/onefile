@@ -3,7 +3,7 @@
   "bin" : "onefile",
   "main": "onefile.cup.js",
   "description": "Quick browser package downloader",
-  "version": "0.2.1",
+  "version": "0.2.2",
 
   "scripts": {
     "test": "jasminetea . -vct 15000",
@@ -30,7 +30,7 @@
     "uglify-js": "^2.4.16"
   },
   "devDependencies": {
-    "jasminetea": "^0.1.11",
+    "jasminetea": "^0.1.15",
     "coveralls": "^2.11.2"
   },
   
