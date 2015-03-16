@@ -217,7 +217,7 @@ class Onefile extends require './utility.coffee'
       .usage """
           <endpoint> [<endpoint> ..] [<options>]
         """+chalk.styles.red.close+chalk.styles.green.open
-      .on '--help',->
+      .on '--help',=>
         @log chalk.styles.green.close,chalk.styles.yellow.open
         @log ("  Description(Quote bower install --help):\n\n"+require('bower/templates/json/help-install').description+"\n").replace /\n/g,"\n    "
         @log chalk.styles.yellow.close

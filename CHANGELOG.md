@@ -1,11 +1,16 @@
+v0.2.7 / Mar 17 2015
+=========================
+ * [`unknown`][unknown] :bug: Fix help
+
 v0.2.6 / Mar 16 2015
 =========================
- * [`unknown`][unknown] :lipstick: Add `-j` `--json` Use ./bower.json or generate.
- * [`unknown`][unknown] :lipstick: Add `-S` `--save` Save dependencies to ./bower.json file.
- * [`unknown`][unknown] :lipstick: Add `-D` `--save-dev` Save devDependencies to ./bower.json file.
- * [`unknown`][unknown] :lipstick: Add `-p` `--production` Ignore devDependencies by Use ./bower.json file.
- * [`unknown`][unknown] :bug: Avoid conflicts commander default instance.
+ * [`4a0a990`][4a0a990] :lipstick: Add `-j` `--json` Use ./bower.json or generate.
+ * [`4a0a990`][4a0a990] :lipstick: Add `-S` `--save` Save dependencies to ./bower.json file.
+ * [`4a0a990`][4a0a990] :lipstick: Add `-D` `--save-dev` Save devDependencies to ./bower.json file.
+ * [`4a0a990`][4a0a990] :lipstick: Add `-p` `--production` Ignore devDependencies by Use ./bower.json file.
+ * [`4a0a990`][4a0a990] :bug: Avoid conflicts commander default instance.
 
+[4a0a990]: https://github.com/59naga/onefile/commit/4a0a990fa2235e3a8a71602269e59cced36659ba
 
 v0.2.2 / Mar 08 2015
 =========================
