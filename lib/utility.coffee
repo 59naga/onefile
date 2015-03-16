@@ -7,29 +7,28 @@ prettyBytes= require 'pretty-bytes'
 class Utility
   constructor: ->
     @i= 0
-    @cwd= path.resolve __dirname,'..'
-    @directory= 'bower_components'
 
-  getConfigsOfDependency: (configs)->
+  getConfigsOfDependency: (configs,options)->
     dependencies= []
 
-    cacheDir= path.join @cwd,@directory
+    cacheDir= path.join options.cwd,options.directory
     for config in configs
       for name,version of config.dependencies
         dependencies.push require path.join cacheDir,name,'bower.json'
 
     dependencies
 
-  getMainFiles: (configs)->
+  getMainFiles: (configs,options)->
     files= []
     for config in configs
       config.main= [config.main] if not (config.main instanceof Array)
       for file in config.main
         if file is undefined
-          @log "\"main\" is undefined to the #{path.join @cwd,@directory,config.name}/bower.json"
+          if not options.useJson
+            @log "\"main\" is undefined to the #{path.join options.cwd,options.directory,config.name}/bower.json"
           continue;
           
-        files.push path.join @cwd,@directory,config.name,file
+        files.push path.join options.cwd,options.directory,config.name,file
 
     files
 

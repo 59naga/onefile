@@ -9,7 +9,7 @@ chalk= require 'chalk'
 
 fixture= 
   json: path.join __dirname,'bower.json'
-  path: "#{onefile.cwd}/#{onefile.directory}/jquery/dist/jquery.js"
+  path: "#{process.cwd()}/bower_components/jquery/dist/jquery.js"
   configs: [
     {
       name: 'jquery'
@@ -103,9 +103,8 @@ describe 'Class',->
 
       it '.install --save',(done)->
         instance= new onefile.constructor
-        instance.cwd= __dirname
 
-        installer= instance.install ['jquery#2.1.3'],save:yes
+        installer= instance.install ['jquery#2.1.3'],{save:yes,cwd:__dirname}
         installer.on 'end',->
           dependencies= (JSON.parse fs.readFileSync(fixture.json).toString()).dependencies
 
@@ -114,9 +113,8 @@ describe 'Class',->
 
       it '.install --save-dev',(done)->
         instance= new onefile.constructor
-        instance.cwd= __dirname
 
-        installer= instance.install ['jquery#2.1.3'],saveDev:yes
+        installer= instance.install ['jquery#2.1.3'],{saveDev:yes,cwd:__dirname}
         installer.on 'end',->
           devDependencies= (JSON.parse fs.readFileSync(fixture.json).toString()).devDependencies
 
@@ -125,20 +123,11 @@ describe 'Class',->
 
       it '.install --json',(done)->
         instance= new onefile.constructor
-        instance.cwd= __dirname
 
-        argv= ['--json']
-        exit= no
-
-        fs.writeFileSync fixture.json,JSON.stringify {name:'onefile',dependencies:{jquery:'*'}},null,'  '
-
-        jsonObj= require fixture.json
-        expect(jsonObj).toEqual {name:'onefile'}
-
-        cli= instance.cli getRawArgv(argv),exit
-        cli.on 'done',(files)->
-          expect(cli instanceof EventEmitter).toBe yes
-          expect(files.length).toEqual 1
+        installer= instance.install [],{json:yes,cwd:__dirname}
+        installer.on 'end',(validatedConfigs)->
+          expect(installer instanceof EventEmitter).toBe yes
+          expect(validatedConfigs.length).toEqual 0
 
           done()
 
@@ -182,18 +171,20 @@ describe 'Class',->
     utility= new Utility
     properties= Object.keys utility.__proto__
 
+    options=
+      cwd: process.cwd()
+      directory: 'bower_components'
+
     it '.constructor is Define working directory',->
       expect(utility.i).toEqual 0
-      expect(utility.cwd).toEqual path.resolve __dirname,'..'
-      expect(utility.directory).toEqual 'bower_components'
 
     it '.getConfigsOfDependency is Get absolute dependencies mainfile path. by bower.json',->
-      dependencies= utility.getConfigsOfDependency fixture.configs
+      dependencies= utility.getConfigsOfDependency fixture.configs,options
 
       expect(dependencies.length).toEqual 0
 
     it '.getMainFiles is Get absolute mainfile path. by bower.json',->
-      mainFiles= utility.getMainFiles fixture.configs
+      mainFiles= utility.getMainFiles fixture.configs,options
 
       expect(mainFiles.length).toEqual 1
       expect(mainFiles[0]).toEqual fixture.path

@@ -40,6 +40,12 @@ class Onefile extends require './utility.coffee'
       .action (args)=> @clean args.force
 
     options= cli.parse rawArgv
+
+    options.useJson= options.json? or options.save? or options.saveDev? or options.production?
+
+    options.cwd= path.join __dirname,'..'
+    options.cwd= process.cwd() if options.useJson
+    options.directory= 'bower_components'
     options
 
   cli: (rawArgv,exit=yes)->
@@ -54,15 +60,16 @@ class Onefile extends require './utility.coffee'
       console.log @getBgColor(true)(' > '),chalk.underline(result.id),result.message
     installer.on 'error',(error)-> throw error
     installer.on 'end', (configs=[])=>
-      dependencies= @getConfigsOfDependency configs
+      configs.unshift require(path.join options.cwd,'bower.json') if options.useJson
+      dependencies= @getConfigsOfDependency configs,options
       resolvedConfigs= dependencies.concat configs
 
       targets= {}
-      targets[config.name]= "#{config.name}##{config.version}" for config in resolvedConfigs
+      targets[config.name]= "#{config.name}##{config.version}" for config in resolvedConfigs when config.main?
       versions= (version for target,version of targets).join(' ')
       @h1 "Combile:",versions,'...'
 
-      files= @getMainFiles resolvedConfigs
+      files= @getMainFiles resolvedConfigs,options
       throw new Error('Invalid configuration packages: '+versions) if Object.keys(targets).length is 0 or files.length is 0
 
       combinedFiles= []      
@@ -100,17 +107,17 @@ class Onefile extends require './utility.coffee'
   install: (packages=[],options={})->
     installer= new EventEmitter
 
-    args= {}
-    args['save']= yes if options.save?
-    args['saveDev']= yes if options.saveDev?
-    args['producion']= yes if options.producion?
+    jsonOptions= {}
+    jsonOptions['save']= yes if options.save?
+    jsonOptions['saveDev']= yes if options.saveDev?
+    jsonOptions['producion']= yes if options.producion?
 
-    custom=
-      cwd: @cwd
-      directory: @directory
+    installOptions=
+      cwd: options.cwd ? process.cwd()
+      directory: 'bower_components'
 
     configs= []
-    bower.commands.install packages,args,custom
+    bower.commands.install packages,jsonOptions,installOptions
       .on 'log', (result)->
         configs.push result.data.pkgMeta if result.id is 'cached'
         configs.push result.data.pkgMeta if result.id is 'install'
@@ -171,7 +178,7 @@ class Onefile extends require './utility.coffee'
   clean: (force=null,exit=yes)->
     cleaner= new EventEmitter
 
-    cacheDir= path.join @cwd,@directory
+    cacheDir= path.join __dirname,'..','bower_components'
 
     console.log @getBgColor(true)(' > '),chalk.underline('deleted'),cacheDir
     rimraf cacheDir,=>
