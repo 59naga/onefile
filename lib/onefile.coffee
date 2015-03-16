@@ -75,7 +75,7 @@ class Onefile extends require './utility.coffee'
       combinedFiles= []      
       combine= @combine files,options.output
       combine.on 'data',(gutilFile)=>
-        file= path.relative process.cwd(),gutilFile.path
+        file= path.relative options.cwd,gutilFile.path
         bytes= @format gutilFile.contents.length
 
         combinedFiles.push file
