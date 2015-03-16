@@ -69,6 +69,15 @@ Use [UglifyJS2][5], sourcemap, Export `name.min.js.map`
 ### `-m`, `--mangle`
 Use [UglifyJS2][5], Mangle names/pass
 
+### `-j` `--json`
+Use ./bower.json.
+### `-S` `--save`
+Save dependencies to ./bower.json file.
+### `-D` `--save-dev`
+Save devDependencies to ./bower.json file.
+### `-p` `--production`
+Ignore devDependencies by Use ./bower.json file.
+
 ## Support extension
 * js
 * css
