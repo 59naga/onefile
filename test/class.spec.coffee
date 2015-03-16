@@ -1,4 +1,5 @@
 onefile= require '../'
+onefile.silent= yes
 
 EventEmitter= require('events').EventEmitter
 spawn= require('child_process').spawn
@@ -98,7 +99,7 @@ describe 'Class',->
 
         installer.on 'end',(configs)->
           expect(installer instanceof EventEmitter).toBe yes
-          expect(configs.length).toEqual 1
+          expect((Object.keys configs).length).toEqual 1
           done()
 
       it '.install --save',(done)->
@@ -127,7 +128,7 @@ describe 'Class',->
         installer= instance.install [],{json:yes,cwd:__dirname}
         installer.on 'end',(validatedConfigs)->
           expect(installer instanceof EventEmitter).toBe yes
-          expect(validatedConfigs.length).toEqual 0
+          expect((Object.keys validatedConfigs).length).toEqual 0
 
           done()
 
@@ -181,7 +182,34 @@ describe 'Class',->
     it '.getConfigsOfDependency is Get absolute dependencies mainfile path. by bower.json',->
       dependencies= utility.getConfigsOfDependency fixture.configs,options
 
-      expect(dependencies.length).toEqual 0
+      expect((Object.keys dependencies).length).toEqual 0
+
+    it '.merge is override object properties',->
+      merged= utility.merge {foo:1,bar:'baz'},{bar:'hogekosan',wombat:'fishpaste'}
+
+      expect(merged).toEqual foo:1,bar:'hogekosan',wombat:'fishpaste'
+
+    it '.override is main-bower-files friendly configure',->
+      overrides=
+        jquery:
+          ignore: yes
+        moment:
+          main:[
+            'moment.js'
+            'locale/ja.js'
+          ]
+          dependencies:
+            'lodash':'*'
+
+      merged= utility.override {'jquery':{},'moment':{}},overrides
+      expect(merged).toEqual
+        moment:
+          main:[
+            'moment.js'
+            'locale/ja.js'
+          ]
+          dependencies:
+            'lodash':'*'
 
     it '.getMainFiles is Get absolute mainfile path. by bower.json',->
       mainFiles= utility.getMainFiles fixture.configs,options
@@ -239,6 +267,8 @@ describe 'Class',->
     it "...has #{properties.length} properties",->
       expect(properties).toEqual [
         'getConfigsOfDependency'
+        'merge'
+        'override'
         'getMainFiles'
         'noop'
         'logColors'

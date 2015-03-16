@@ -11,53 +11,53 @@
 $ npm install onefile --global
 ```
 
+## Example
+```bash
+$ onefile bootstrap --save
+# Generated > pkgs.js
+# Generated > bower.json
+```
+
+### pkgs.js ?
+
+is Concatenated js / css file.
+
+```bash
+# +   247.39 kB (cache)/bower_components/jquery/dist/jquery.js
+# +    66.73 kB (cache)/bower_components/bootstrap/dist/js/bootstrap.js
+# +   607.99 kB (cache)/bower_components/bootstrap/dist/css/bootstrap.css.js
+```
+#### bootstrap.css.js?
+
+Transformed to datauri by css.
+
+```javascript
+(function(){
+  var link=document.createElement('link');
+  link.setAttribute('data-name','bootstrap');
+  link.setAttribute('rel','stylesheet');
+  link.setAttribute('href',"data:text/css;charset=utf8;base64,QGNoYXJzZXQgIlVU..."
+  document.head.appendChild(link);
+})();
+```
+### bower.json ?
+
+Write to bower.json of current working directory.
+If not exists then generate minimal bower.json:
+
+```json
+{
+  "name": "undefined",
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}
+```
+
+If you want to use an existing bower.json, Execute the `onefile --json`.
+
 # Usage
 `$ onefile <endpoint>` by [`bower packages`][3]
-
-* bootstrap
-  ```bash
-  onefile bootstrap
-
-  #Execute: bower install bootstrap ...
-  # >  not-cached git://github.com/twbs/bootstrap.git#*
-  # >  resolve git://github.com/twbs/bootstrap.git#*
-  # >  download https://github.com/twbs/bootstrap/archive/v3.3.2.tar.gz
-  # >  extract archive.tar.gz
-  # >  resolved git://github.com/twbs/bootstrap.git#3.3.2
-  # >  install bootstrap#3.3.2
-  #
-  #Combile: jquery#2.1.3 bootstrap#3.3.2 ...
-  # +   247.39 kB (cache)/bower_components/jquery/dist/jquery.js
-  # +    66.73 kB (cache)/bower_components/bootstrap/dist/js/bootstrap.js
-  # +   607.99 kB (cache)/bower_components/bootstrap/dist/css/bootstrap.css.js
-  #
-  #Result:
-  # =   922.11 kB pkgs.js
-  ```
-
-* angular
-  ```bash
-  onefile angular angular-ui-router angular-animate animate.css
-
-  # Execute: bower install angular angular-ui-router angular-animate animate.css ...
-  #  >  not-cached git://github.com/daneden/animate.css.git#*
-  #  >  resolve git://github.com/daneden/animate.css.git#*
-  # ...
-  #
-  # Combile: angular#1.3.14 animate.css#3.2.3 angular-animate#1.3.14 angular-ui-router#0.2.13 ...
-  #  +   954.54 kB (cache)/bower_components/angular/angular.js
-  #  +   104.24 kB (cache)/bower_components/angular-animate/angular-animate.js
-  #  +   156.74 kB (cache)/bower_components/angular-ui-router/release/angular-ui-router.js
-  #  +   104.25 kB (cache)/bower_components/animate.css/animate.css.js
-  #
-  # Result:
-  #  =     1.32 MB pkgs.js
-  ```
-
-Finally, Will read from the html.
-```html
-<script src="pkgs.js"></script>
-```
 
 ## Options
 ### `-o`, `--output`

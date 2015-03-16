@@ -1,10 +1,16 @@
 onefile= require '../'
+onefile.silent= yes
 
 fs= require 'fs'
 getRawArgv= (argv)->
   process.argv[...2].concat argv
 
 describe 'Usage',->
+  beforeEach ->
+    try
+      fs.unlinkSync 'bower.json'
+    catch
+
   it '$ onefile riot',(done)->
     argv= [
       'riot'
@@ -47,16 +53,18 @@ describe 'Usage',->
       expect(fs.statSync(fileMinMap).size).toBeGreaterThan 100000
       done()
 
-  it '$ onefile angular angular-ui-router angular-animate animate.css',(done)->
+  it '$ onefile --save angular angular-ui-router angular-animate animate.css',(done)->
     argv= [
-      'angular'
-      'angular-ui-router'
-      'angular-animate'
-      'animate.css'
+      'angular#1.3.14'
+      'angular-ui-router#0.2.13'
+      'angular-animate#1.3.14'
+      'animate.css#3.2.3'
       
       '--compress'
       '--mangle'
       '--sourcemap'
+
+      '--save'
     ]
     exit= no
 
@@ -69,6 +77,13 @@ describe 'Usage',->
       expect(fs.statSync(file).size).toBeGreaterThan      1000000
       expect(fs.statSync(fileMin).size).toBeGreaterThan    200000
       expect(fs.statSync(fileMinMap).size).toBeGreaterThan 200000
+      expect(JSON.parse fs.readFileSync('./bower.json').toString()).toEqual
+        name: "undefined"
+        dependencies:
+          angular: "1.3.14"
+          "angular-ui-router": "0.2.13"
+          "angular-animate": "1.3.14"
+          "animate.css": "3.2.3"
       done()
 
   xit '$ onefile jasmine(Can not combine since main is undefined)',(done)->

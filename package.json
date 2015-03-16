@@ -3,11 +3,11 @@
   "bin" : "onefile",
   "main": "onefile",
   "description": "Quick browser package downloader",
-  "version": "0.2.5",
+  "version": "0.2.6",
 
   "scripts": {
     "test": "jasminetea test --verbose --cover --report --timeout 15000",
-    "posttest": "rm pkgs*",
+    "posttest": "rm pkgs* && rm bower.json",
 
     "help": "node onefile",
 

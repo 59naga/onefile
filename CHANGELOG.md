@@ -1,6 +1,6 @@
-v0.2.4 / Mar 16 2015
+v0.2.6 / Mar 16 2015
 =========================
- * [`unknown`][unknown] :lipstick: Add `-j` `--json` Use ./bower.json file.
+ * [`unknown`][unknown] :lipstick: Add `-j` `--json` Use ./bower.json or generate.
  * [`unknown`][unknown] :lipstick: Add `-S` `--save` Save dependencies to ./bower.json file.
  * [`unknown`][unknown] :lipstick: Add `-D` `--save-dev` Save devDependencies to ./bower.json file.
  * [`unknown`][unknown] :lipstick: Add `-p` `--production` Ignore devDependencies by Use ./bower.json file.

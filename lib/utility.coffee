@@ -9,23 +9,37 @@ class Utility
     @i= 0
 
   getConfigsOfDependency: (configs,options)->
-    dependencies= []
+    dependencies= {}
 
     cacheDir= path.join options.cwd,options.directory
-    for config in configs
+    for name,config of configs
       for name,version of config.dependencies
-        dependencies.push require path.join cacheDir,name,'bower.json'
+        dependencies[name]= require path.join cacheDir,name,'bower.json'
 
     dependencies
 
+  merge: (obj,overrides)->
+    obj
+    obj[key]= value for key,value of overrides
+    obj
+
+  override: (configs,overrides) ->
+    for name,config of overrides
+      if config.ignore
+        delete configs[name]
+        continue
+      configs[name]= @merge configs[name],config if configs[name]?
+
+    configs
+
   getMainFiles: (configs,options)->
     files= []
-    for config in configs
+    for name,config of configs
       config.main= [config.main] if not (config.main instanceof Array)
       for file in config.main
         if file is undefined
           if not options.useJson
-            @log "\"main\" is undefined to the #{path.join options.cwd,options.directory,config.name}/bower.json"
+            @log "Warn: \"main\" is undefined to the #{path.join options.cwd,options.directory,config.name}/bower.json"
           continue;
           
         files.push path.join options.cwd,options.directory,config.name,file
@@ -41,13 +55,12 @@ class Utility
   logBgColors: ['bgRed','bgGreen','bgYellow','bgCyan']
 
   h1: (args...)->
+    return if require('../').silent
     console.log ''
     console.log chalk.bold args...
   log: (args...)->
-    [...,changeColor]= args
-    args= args[...-1] if changeColor is yes
-
-    console.log @getColor(changeColor) args...
+    return if require('../').silent
+    console.log args...
   getColor: (changeColor=no)->
     @i= 0 if @logColors[@i] is undefined
     color= chalk[@logColors[@i]]

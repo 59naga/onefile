@@ -41,10 +41,11 @@ class Onefile extends require './utility.coffee'
 
     options= cli.parse rawArgv
 
-    options.useJson= options.json? or options.save? or options.saveDev? or options.production?
+    options.useJson= options.json? or options.production? or options.save? or options.saveDev?
 
     options.cwd= path.join __dirname,'..'
     options.cwd= process.cwd() if options.useJson
+    options.useJsonPath= path.join options.cwd,'bower.json' if options.useJson
     options.directory= 'bower_components'
     options
 
@@ -53,19 +54,24 @@ class Onefile extends require './utility.coffee'
     return @help() if options.args.length is 0 and not options.useJson
     return if 'clean' in rawArgv
 
+    skipInit= (options.save? or options.saveDev?) and not fs.existsSync options.useJsonPath
+    fs.writeFileSync(options.useJsonPath,JSON.stringify {name:'undefined'}) if skipInit
+
     @h1 'Execute: bower install',options.args.join(' '),'...'
 
     installer= @install options.args,options
     installer.on 'log',(result)=>
-      console.log @getBgColor(true)(' > '),chalk.underline(result.id),result.message
+      @log @getBgColor(on)(' > '),chalk.underline(result.id),result.message
     installer.on 'error',(error)-> throw error
-    installer.on 'end', (configs=[])=>
-      configs.unshift require(path.join options.cwd,'bower.json') if options.useJson
+    installer.on 'end', (configs={})=>
+      json= require options.useJsonPath if options.useJson
+      configs['']= json if json?
       dependencies= @getConfigsOfDependency configs,options
-      resolvedConfigs= dependencies.concat configs
+      resolvedConfigs= @merge dependencies,configs
+      resolvedConfigs= @override resolvedConfigs,json.overrides if json?.overrides?
 
       targets= {}
-      targets[config.name]= "#{config.name}##{config.version}" for config in resolvedConfigs when config.main?
+      targets[config.name]= "#{config.name}##{config.version}" for name,config of resolvedConfigs when config.main?
       versions= (version for target,version of targets).join(' ')
       @h1 "Combile:",versions,'...'
 
@@ -80,12 +86,12 @@ class Onefile extends require './utility.coffee'
 
         combinedFiles.push file
 
-        console.log @getBgColor(true)(' + '),chalk.underline(bytes),path.join '(cache)/',file
+        @log @getBgColor(on)(' + '),chalk.underline(bytes),path.join '(cache)/',file
       combine.on 'end',(filename)=>
 
         @h1 'Result:'
         bytes= @format fs.readFileSync(filename).length
-        console.log @getBgColor(true)(' = '),chalk.underline(bytes),filename
+        @log @getBgColor(on)(' = '),chalk.underline(bytes),filename
 
         compress= @noop
         compress= @compress if options.compress? or options.mangle?
@@ -95,9 +101,19 @@ class Onefile extends require './utility.coffee'
 
           symbol= ' ≒ '
           symbol= ' ≠ ' if options.mangle?
-          console.log @getBgColor(true)(symbol),chalk.underline(bytes),filename
+          @log @getBgColor(on)(symbol),chalk.underline(bytes),filename
 
-        compress.on 'end',->
+        compress.on 'end',=>
+          if options.save?
+            @h1 'Save:'
+            for target,version of targets
+              @log @getBgColor(on)(' < '),chalk.underline('dependencies'),version
+
+          if options.saveDev?
+            @h1 'Save:'
+            for target,version of targets
+              @log @getBgColor(on)(' < '),chalk.underline('dependencies'),version
+
           process.exit 0 if exit
           installer.emit 'done',combinedFiles
         compress
@@ -116,11 +132,11 @@ class Onefile extends require './utility.coffee'
       cwd: options.cwd ? process.cwd()
       directory: 'bower_components'
 
-    configs= []
+    configs= {}
     bower.commands.install packages,jsonOptions,installOptions
       .on 'log', (result)->
-        configs.push result.data.pkgMeta if result.id is 'cached'
-        configs.push result.data.pkgMeta if result.id is 'install'
+        configs[result.data.pkgMeta.name]= result.data.pkgMeta if result.id is 'cached'
+        configs[result.data.pkgMeta.name]= result.data.pkgMeta if result.id is 'install'
 
         installer.emit 'log',result
 
@@ -180,14 +196,14 @@ class Onefile extends require './utility.coffee'
 
     cacheDir= path.join __dirname,'..','bower_components'
 
-    console.log @getBgColor(true)(' > '),chalk.underline('deleted'),cacheDir
+    @log @getBgColor(on)(' > '),chalk.underline('deleted'),cacheDir
     rimraf cacheDir,=>
       clean= @noop
       clean= bower.commands.cache.clean if force?
       clean()
       .on 'log',(result)=>
         symbol= ' > '
-        console.log @getBgColor(true)(symbol),chalk.underline(result.id),result.message
+        @log @getBgColor(on)(symbol),chalk.underline(result.id),result.message
       .on 'end',=>
         process.exit 0 if exit
         cleaner.emit 'end'
@@ -195,16 +211,16 @@ class Onefile extends require './utility.coffee'
     cleaner
     
   help: ->
-    console.log chalk.styles.red.open
+    @log chalk.styles.red.open
 
     cli
       .usage """
           <endpoint> [<endpoint> ..] [<options>]
         """+chalk.styles.red.close+chalk.styles.green.open
       .on '--help',->
-        console.log chalk.styles.green.close,chalk.styles.yellow.open
-        console.log ("  Description(Quote bower install --help):\n\n"+require('bower/templates/json/help-install').description+"\n").replace /\n/g,"\n    "
-        console.log chalk.styles.yellow.close
+        @log chalk.styles.green.close,chalk.styles.yellow.open
+        @log ("  Description(Quote bower install --help):\n\n"+require('bower/templates/json/help-install').description+"\n").replace /\n/g,"\n    "
+        @log chalk.styles.yellow.close
 
     cli.help()
 
