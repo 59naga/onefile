@@ -6,7 +6,7 @@
   "version": "0.2.3",
 
   "scripts": {
-    "test": "jasminetea test --verbose --cover --timeout 15000",
+    "test": "jasminetea test --verbose --cover --report --timeout 15000",
     "posttest": "rm pkgs*",
 
     "help": "node onefile",
