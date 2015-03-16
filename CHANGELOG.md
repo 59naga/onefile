@@ -1,3 +1,12 @@
+v0.2.3 / Mar 16 2015
+=========================
+ * [`unknown`][unknown] :lipstick: Add `-j` `--json` Use ./bower.json file.
+ * [`unknown`][unknown] :lipstick: Add `-S` `--save` Save dependencies to ./bower.json file.
+ * [`unknown`][unknown] :lipstick: Add `-D` `--save-dev` Save devDependencies to ./bower.json file.
+ * [`unknown`][unknown] :lipstick: Add `-p` `--production` Ignore devDependencies by Use ./bower.json file.
+ * [`unknown`][unknown] :bug: Avoid conflicts commander default instance.
+
+
 v0.2.2 / Mar 08 2015
 =========================
  * [`8589e69`][8589e69] :white_check_mark: Fix: Can not combine since main is undefined

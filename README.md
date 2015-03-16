@@ -77,9 +77,6 @@ Use [UglifyJS2][5], Mangle names/pass
 ## `Unable to find suitable version`
 Try: Cleaning cache `onefile clean` command.
 
-## TODO
-* __TEST__
-
 License
 =========================
 MIT by 59naga

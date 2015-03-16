@@ -1,3 +1,20 @@
 #!/usr/bin/env node
 
-require('./').cli();
+var onefile;
+// Avoid conflicts with another version
+if(typeof require('module')._extensions['.coffee']==='undefined'){
+  require('coffee-script/register');
+}
+onefile= require('./lib/onefile.coffee');
+
+if(module.parent===null){
+  // Fix exception of CLI
+  process.on('uncaughtException',function(error){
+    throw error;
+    process.exit(1);
+  });
+  
+  onefile.cli(process.argv);
+}
+
+module.exports= onefile;

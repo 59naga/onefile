@@ -1,0 +1,6 @@
+{
+  "name": "onefile",
+  "dependencies": {
+    "jquery": "*"
+  }
+}
