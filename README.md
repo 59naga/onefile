@@ -88,10 +88,11 @@ Try: Cleaning cache `onefile clean` command.
 
 License
 =========================
-MIT by 59naga
+[MIT][license] by 59naga
 
 [.svg]: https://cdn.rawgit.com/59naga/onefile/master/.svg
 
+[license]: http://59naga.mit-license.org/
 [npm-image]: https://badge.fury.io/js/onefile.svg
 [npm]: https://npmjs.org/package/onefile
 [travis-image]: https://travis-ci.org/59naga/onefile.svg?branch=master
