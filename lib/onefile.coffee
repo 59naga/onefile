@@ -50,7 +50,7 @@ class Onefile extends require './utility.coffee'
 
   cli: (rawArgv,exit=yes)->
     options= @parse rawArgv
-    return @help() if options.args.length is 0 and options.json is undefined
+    return @help() if options.args.length is 0 and not options.useJson
     return if 'clean' in rawArgv
 
     @h1 'Execute: bower install',options.args.join(' '),'...'
