@@ -42,7 +42,7 @@ class Utility
             @log "Warn: \"main\" is undefined to the #{path.join options.cwd,options.directory,config.name}/bower.json"
           continue;
           
-        files.push path.join options.cwd,options.directory,config.name,file
+        files.push path.join options.cwd,options.directory,name,file
 
     files
 

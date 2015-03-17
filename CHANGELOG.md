@@ -1,6 +1,12 @@
+v0.2.8 / Mar 17 2015
+=========================
+ * [`unknown`][unknown] :bug: Fix Miss the mark for combine. Due to `utility.getMainFiles`
+
 v0.2.7 / Mar 17 2015
 =========================
- * [`unknown`][unknown] :bug: Fix help
+ * [`db06a2d`][db06a2d] :bug: Fix help
+
+[db06a2d]: https://github.com/59naga/onefile/commit/db06a2d8b63f9ec87f387421d1928e3d8a0e17a8
 
 v0.2.6 / Mar 16 2015
 =========================

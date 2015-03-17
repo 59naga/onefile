@@ -11,13 +11,11 @@ chalk= require 'chalk'
 fixture= 
   json: path.join __dirname,'bower.json'
   path: "#{process.cwd()}/bower_components/jquery/dist/jquery.js"
-  configs: [
-    {
+  configs:
+    jquery:
       name: 'jquery'
       main: 'dist/jquery.js'
       dependencies: {}
-    }
-  ]
 getRawArgv= (argv)->
   process.argv[...2].concat argv
 
@@ -72,7 +70,7 @@ describe 'Class',->
       instance= new onefile.constructor
 
       argv= [
-        fixture.configs[0].name
+        fixture.configs.jquery.name
       ]
       exit= no
 
