@@ -24,8 +24,8 @@ class Onefile extends require './utility.coffee'
       .option '-o, --output <name>',
         'Output endpoints = <pkgs>.js','pkgs'
 
-      .option '-j, --json',
-        'Use ./bower.json.'
+      .option '-j, --json [filename]',
+        'Use [./bower.json].',undefined
       .option '-S, --save',
         'Save dependencies to ./bower.json file.'
       .option '-D, --save-dev',
@@ -42,10 +42,11 @@ class Onefile extends require './utility.coffee'
     options= cli.parse rawArgv
 
     options.useJson= options.json? or options.production? or options.save? or options.saveDev?
+    options.json= 'bower.json' if options.useJson? and not (typeof options.json is 'string')
 
     options.cwd= path.join __dirname,'..'
     options.cwd= process.cwd() if options.useJson
-    options.useJsonPath= path.join options.cwd,'bower.json' if options.useJson
+    options.useJsonPath= path.resolve options.cwd,options.json if options.useJson
     options.directory= 'bower_components'
     options
 
@@ -179,7 +180,7 @@ class Onefile extends require './utility.coffee'
       args.push '--source-map'
       args.push path.resolve process.cwd(),"#{output}.min.js.map"
       args.push '--source-map-url'
-      args.push "#{output}.min.js.map"
+      args.push path.basename "#{output}.min.js.map"
     
     exec args.join(' '),(stderr)->
       throw stderr if stderr?

@@ -36,7 +36,7 @@ describe 'Class',->
       expect(parsed.mangle).toEqual yes
       expect(parsed.sourcemap).toEqual yes
       expect(parsed.output).toEqual 'pkgs'
-      expect(parsed.json).toEqual undefined
+      expect(parsed.json).toEqual 'bower.json'
       expect(parsed.save).toEqual undefined
       expect(parsed.saveDev).toEqual undefined
       expect(parsed.production).toEqual undefined
@@ -61,7 +61,7 @@ describe 'Class',->
       expect(parsed.mangle).toEqual yes
       expect(parsed.sourcemap).toEqual yes
       expect(parsed.output).toEqual 'hogekosan'
-      expect(parsed.json).toEqual yes
+      expect(parsed.json).toEqual 'bower.json'
       expect(parsed.save).toEqual yes
       expect(parsed.saveDev).toEqual yes
       expect(parsed.production).toEqual yes
@@ -80,7 +80,7 @@ describe 'Class',->
         expect(files.length).toEqual 1
 
         done()
-
+    
     describe '.install',->
       beforeEach ->
         fs.writeFileSync fixture.json,JSON.stringify {name:'onefile'},null,'  '
