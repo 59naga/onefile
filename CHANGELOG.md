@@ -1,4 +1,4 @@
-v0.2.9 / Tue 7 2015
+v0.2.10 / Tue 7 2015
 =========================
  * [`unknown`][9] :bug: Fix [#1][9A]
  * [`unknown`][9] Change `--json` Can use another bower.json

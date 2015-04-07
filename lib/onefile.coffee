@@ -40,13 +40,14 @@ class Onefile extends require './utility.coffee'
       .action (args)=> @clean args.force
 
     options= cli.parse rawArgv
+    options.output= options.output.replace /.js$/,''
 
     options.useJson= options.json? or options.production? or options.save? or options.saveDev?
     options.json= 'bower.json' if options.useJson? and not (typeof options.json is 'string')
 
     options.cwd= path.join __dirname,'..'
-    options.cwd= process.cwd() if options.useJson
-    options.useJsonPath= path.resolve options.cwd,options.json if options.useJson
+    options.cwd= path.dirname path.resolve process.cwd(),options.json if options.useJson
+    options.useJsonPath= path.join options.cwd,'bower.json' if options.useJson
     options.directory= 'bower_components'
     options
 

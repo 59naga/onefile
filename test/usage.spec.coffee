@@ -65,6 +65,7 @@ describe 'Usage',->
       '--sourcemap'
 
       '--save'
+      '--json '+__dirname+'/bower.json'
     ]
     exit= no
 
