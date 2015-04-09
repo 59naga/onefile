@@ -3,7 +3,7 @@
   "bin" : "onefile",
   "main": "onefile",
   "description": "Quick browser package downloader",
-  "version": "0.2.10",
+  "version": "0.2.11",
 
   "scripts": {
     "test": "jasminetea test --verbose --cover --report --timeout 15000",

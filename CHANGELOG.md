@@ -1,9 +1,15 @@
+v0.2.11 / Tue 9 2015
+=========================
+ * [`unknown`][10] :bug: Fix min.js.map relative path
+
+[10]: https://github.com/59naga/onefile/commit/
+
 v0.2.10 / Tue 7 2015
 =========================
  * [`unknown`][9] :bug: Fix [#1][9A]
  * [`unknown`][9] Change `--json` Can use another bower.json
 
-[9]: https://github.com/59naga/onefile/commits/master
+[9]: https://github.com/59naga/onefile/commit/cc20cb693da6f5972dc084503fd248a21f92d819
 [9A]: https://github.com/59naga/onefile/issues/1
 
 v0.2.8 / Mar 18 2015

@@ -182,6 +182,8 @@ class Onefile extends require './utility.coffee'
       args.push path.resolve process.cwd(),"#{output}.min.js.map"
       args.push '--source-map-url'
       args.push path.basename "#{output}.min.js.map"
+      args.push '--prefix'
+      args.push (path.dirname path.resolve process.cwd(),"#{output}.js").split(path.sep).length-1
     
     exec args.join(' '),(stderr)->
       throw stderr if stderr?
