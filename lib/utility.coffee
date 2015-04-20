@@ -14,7 +14,7 @@ class Utility
     cacheDir= path.join options.cwd,options.directory
     for name,config of configs
       for name,version of config.dependencies
-        dependencies[name]= require path.join cacheDir,name,'bower.json'
+        dependencies[name]= require path.join cacheDir,name,'.bower.json'
 
     dependencies
 
