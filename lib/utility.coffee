@@ -16,6 +16,10 @@ class Utility
       for name,version of config.dependencies
         dependencies[name]= require path.join cacheDir,name,'.bower.json'
 
+      if options.development
+        for name,version of config.devDependencies
+          dependencies[name]= require path.join cacheDir,name,'.bower.json'
+
     dependencies
 
   merge: (obj,overrides)->

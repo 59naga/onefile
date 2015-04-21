@@ -31,8 +31,8 @@ class Onefile extends require './utility.coffee'
       .option '-D, --save-dev',
         'Save devDependencies to ./bower.json file.'
 
-      .option '-p, --production',
-        'Ignore devDependencies by Use ./bower.json file.'
+      .option '-d, --development',
+        'Include devDependencies by Use ./bower.json file.'
     cli
       .command 'clean'
       .description 'Remove onefile cache directory'
@@ -42,7 +42,7 @@ class Onefile extends require './utility.coffee'
     options= cli.parse rawArgv
     options.output= options.output.replace /.js$/,''
 
-    options.useJson= options.json? or options.production? or options.save? or options.saveDev?
+    options.useJson= options.json? or options.development? or options.save? or options.saveDev?
     options.json= 'bower.json' if options.useJson? and not (typeof options.json is 'string')
 
     options.cwd= path.join __dirname,'..'
@@ -114,7 +114,7 @@ class Onefile extends require './utility.coffee'
           if options.saveDev?
             @h1 'Save:'
             for target,version of targets
-              @log @getBgColor(on)(' < '),chalk.underline('dependencies'),version
+              @log @getBgColor(on)(' < '),chalk.underline('devDependencies'),version
 
           process.exit 0 if exit
           installer.emit 'done',combinedFiles

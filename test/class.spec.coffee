@@ -39,7 +39,7 @@ describe 'Class',->
       expect(parsed.json).toEqual 'bower.json'
       expect(parsed.save).toEqual undefined
       expect(parsed.saveDev).toEqual undefined
-      expect(parsed.production).toEqual undefined
+      expect(parsed.development).toEqual undefined
 
       instance= new onefile.constructor
       argv= [
@@ -53,7 +53,7 @@ describe 'Class',->
         '-j'
         '-S'
         '-D'
-        '-p'
+        '-d'
       ]
 
       parsed= instance.parse getRawArgv argv
@@ -64,7 +64,7 @@ describe 'Class',->
       expect(parsed.json).toEqual 'bower.json'
       expect(parsed.save).toEqual yes
       expect(parsed.saveDev).toEqual yes
-      expect(parsed.production).toEqual yes
+      expect(parsed.development).toEqual yes
 
     it '.cli is CLI entry point',(done)->
       instance= new onefile.constructor

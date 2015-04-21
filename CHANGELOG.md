@@ -1,9 +1,11 @@
-v0.2.13 / Apr 21 2015
+v0.2.14-rc.1 / Apr 21 2015
 =========================
- * [`unknown`][10] :bug: Fix [#2][11A]
+ * [`aadd2a6`][11] :bug: Fix [#2][11A]
+ * [`unknown`][12] Add options `--development`
 
-[11]: https://github.com/59naga/onefile/commit/
+[11]: https://github.com/59naga/onefile/commit/aadd2a6cd0a49a75701ac55f2d639f5ac349e7c5
 [11A]: https://github.com/59naga/onefile/issues/2
+[12]: https://github.com/59naga/onefile/commits/master
 
 v0.2.11 / Apr 9 2015
 =========================
