@@ -75,8 +75,8 @@ Use ./bower.json.
 Save dependencies to ./bower.json file.
 ### `-D` `--save-dev`
 Save devDependencies to ./bower.json file.
-### `-p` `--production`
-Ignore devDependencies by Use ./bower.json file.
+### `-d` `--development`
+Include devDependencies by Use ./bower.json file.
 
 ## Support extension
 * js
