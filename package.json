@@ -9,7 +9,7 @@
     "test": "jasminetea --cover --report --lint --timeout 15000",
     "posttest": "rm pkgs* && rm bower.json",
     
-    "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
+    "postinstall": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "bower": "^1.4.1",
     "chalk": "^1.0.0",
+    "coffee-script": "^1.9.3",
     "commander": "^2.8.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",

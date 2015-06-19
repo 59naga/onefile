@@ -103,11 +103,14 @@ and Generate a source map of the previous compression js using the `-s` option.
 #     -d, --development      Include devDependencies by Use ./bower.json file.
 ```
 
-# Note
+## Support
 
-## Support extension
-* js
-* css
+Ignore except for the following files
+
+* `.js`
+* `.css`
+
+# Note
 
 ## `Unable to find suitable version`
 Try: Cleaning cache `onefile clean` command.
