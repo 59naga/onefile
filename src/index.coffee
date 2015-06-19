@@ -1,7 +1,5 @@
-fs= require 'fs'
-path= require 'path'
-exec= require('child_process').exec
-EventEmitter= require('events').EventEmitter
+# Dependencies
+Utility= require('./utility').Utility
 
 Command= (require 'commander').Command
 cli= new Command
@@ -10,7 +8,13 @@ rimraf= require 'rimraf'
 
 chalk= require 'chalk'
 
-class Onefile extends require './utility.coffee'
+fs= require 'fs'
+path= require 'path'
+exec= require('child_process').exec
+EventEmitter= require('events').EventEmitter
+
+# Public
+class Onefile extends Utility
   parse: (rawArgv)->
     cli= new Command # fix Got a contaminated properties by Re-parse
     cli
@@ -229,3 +233,4 @@ class Onefile extends require './utility.coffee'
     cli.help()
 
 module.exports= new Onefile
+module.exports.Onefile= Onefile

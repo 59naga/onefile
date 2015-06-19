@@ -1,20 +1,27 @@
-# quick boot options
+# Quick boot options
 sudo: false
 cache:
   directories:
     - node_modules
 
-# language options
+# Ignore version tags
+branches:
+  except:
+    - /^v[0-9]/
+
+# Language options
 language: node_js
 node_js:
   - '0.10'
 
-# coveralls.io options
+# COVERALLS_REPO_TOKEN
 env:
   global:
     secure: qeFyqdmPvt/ZCfN60KDES+o9+3Ebebq4XtAA1sswdN+LnarDescMIGSpNiJrP0rMncnEd78eOz8/R6m4GGcUxKRE/jX1W6buJLO5TJpAoMAK8//EF3I6AvzFvsafGRxt7ZF8xWLEh1c/iDb2zSIOBuT0DQXa3fi0Y+twlTKf90U=
 
-# deploy options
+# Npm publish options
+before_deploy:
+  - npm install coffee-script --global
 deploy:
   provider: npm
   email: i59naga@icloud.com

@@ -9,18 +9,28 @@ class Utility
     @i= 0
 
   getConfigsOfDependency: (configs,options)->
-    dependencies= {}
+    deps= {}
 
     cacheDir= path.join options.cwd,options.directory
     for name,config of configs
       for name,version of config.dependencies
-        dependencies[name]= require path.join cacheDir,name,'.bower.json'
+        config= require path.join cacheDir,name,'.bower.json'
+
+        dependencies= config?.dependencies
+        if dependencies
+          for key,value of dependencies
+            deps[key]?= require path.join cacheDir,key,'.bower.json'
+          
+            if deps[name]?.dependencies
+              deps= @merge deps,@getConfigsOfDependency deps[name].dependencies,options
+
+        deps[name]?= config
 
       if options.development
         for name,version of config.devDependencies
-          dependencies[name]= require path.join cacheDir,name,'.bower.json'
+          deps[name]?= require path.join cacheDir,name,'.bower.json'
 
-    dependencies
+    deps
 
   merge: (obj,overrides)->
     obj
@@ -81,4 +91,4 @@ class Utility
   format: (bytes)->
     ('      '+prettyBytes bytes).slice -10
 
-module.exports= Utility
+module.exports.Utility= Utility
