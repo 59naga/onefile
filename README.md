@@ -1,7 +1,5 @@
 # ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
 
-> Quick browser package installer using bower.
-
 ## Installation
 ```bash
 $ npm install onefile --global
