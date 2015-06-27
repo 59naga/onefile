@@ -1,41 +1,34 @@
 {
   "name": "onefile",
-  "bin" : "onefile",
-  "description": "Quick browser package downloader",
+  "bin":  "onefile",
+  "description": "bower main files compressor",
   "version": "0.3.0-alpha",
 
   "scripts": {
-    "start": "jasminetea --watch --timeout 15000",
-    "test": "jasminetea --cover --report --lint --timeout 15000",
-    "posttest": "rm pkgs* && rm bower.json",
-    
-    "postinstall": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
+    "start": "jasminetea --watch",
+    "test": "jasminetea --lint",
+    "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src"
   },
-
+  
   "dependencies": {
-    "bower": "^1.4.1",
     "chalk": "^1.0.0",
-    "coffee-script": "^1.9.3",
     "commander": "^2.8.1",
     "gulp": "^3.9.0",
-    "gulp-concat": "^2.5.2",
+    "gulp-concat": "^2.6.0",
     "gulp-jsfy": "^0.1.5-rc.1",
+    "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
-    "rimraf": "^2.4.0",
     "uglify-js": "^2.4.23"
   },
   "devDependencies": {
     "jasminetea": "^0.2.1"
   },
-  
+
   "keywords": [
     "bower",
-    "installer",
-    "cli",
-    "concat",
-    "uglify",
+    "base64",
     "js",
     "css"
   ],

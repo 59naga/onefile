@@ -10,6 +10,8 @@ branches:
     - /^v[0-9]/
 
 # Language options
+before_install:
+  - npm install bower --global
 language: node_js
 node_js:
   - '0.10'
