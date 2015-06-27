@@ -12,7 +12,9 @@ $ npm install onefile --global
 Combile the [main property file of dependencies](https://github.com/ck86/main-bower-files#usage) to `pkgs.js` using `./bower.json`
 
 ```bash
-$ bower install c3-angular
+$ bower init
+# ...
+$ bower install c3-angular --save
 # ...
 $ onefile
 # Found:
