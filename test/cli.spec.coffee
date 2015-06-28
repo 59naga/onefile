@@ -62,7 +62,7 @@ describe 'onefile',->
       expect(map.length).toBeGreaterThan  150000
       done()
 
-  fit '$ bower install bootstrap bootstrap-material-design --save && onefile',(done)->
+  it '$ bower install bootstrap bootstrap-material-design --save && onefile',(done)->
     $onefile 'bootstrap bootstrap-material-design',[],(error,stdout)->
       output= 'pkgs'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
