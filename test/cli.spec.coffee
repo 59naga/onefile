@@ -22,7 +22,7 @@ describe 'onefile',->
   afterAll (done)->
     exec 'rm *.js *.map *.json',{cwd:__dirname},done
 
-  it '$ bower install jquery && onefile',(done)->
+  it '$ bower install jquery --save && onefile',(done)->
     $onefile 'jquery',[],->
       output= 'pkgs'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
@@ -30,7 +30,7 @@ describe 'onefile',->
       expect(js.length).toBeGreaterThan  200000
       done()
 
-  it '$ bower install c3-angular && onefile',(done)->
+  it '$ bower install c3-angular --save && onefile',(done)->
     $onefile 'c3-angular',[],->
       output= 'pkgs'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
@@ -38,7 +38,7 @@ describe 'onefile',->
       expect(js.length).toBeGreaterThan 1000000
       done()
 
-  it '$ bower install c3-angular && onefile --mangle --soucemap',(done)->
+  it '$ bower install c3-angular --save && onefile --mangle --soucemap',(done)->
     $onefile 'c3-angular',['--mangle','--soucemap'],->
       output= 'pkgs'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
@@ -50,7 +50,7 @@ describe 'onefile',->
       expect(map.length).toBeGreaterThan  600000
       done()
 
-  it '$ bower install slick-carousel && onefile --mangle --soucemap --output slick',(done)->
+  it '$ bower install slick-carousel --save && onefile --mangle --soucemap --output slick',(done)->
     $onefile 'slick-carousel',['--mangle','--soucemap','--output','slick'],->
       output= 'slick'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
@@ -60,4 +60,17 @@ describe 'onefile',->
       expect(js.length).toBeGreaterThan   200000
       expect(min.length).toBeGreaterThan  100000
       expect(map.length).toBeGreaterThan  150000
+      done()
+
+  fit '$ bower install bootstrap bootstrap-material-design --save && onefile',(done)->
+    $onefile 'bootstrap bootstrap-material-design',[],(error,stdout)->
+      output= 'pkgs'
+      js= fs.readFileSync (testDir+output+'.js'),'utf8'
+
+      expect(js.length).toBeGreaterThan  200000
+
+      parentOffset= stdout.indexOf 'bower_components/bootstrap/'
+      childOffset= stdout.indexOf 'bower_components/bootstrap-material-design/'
+      expect(parentOffset).toBeGreaterThan childOffset
+
       done()

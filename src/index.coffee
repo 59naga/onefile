@@ -3,6 +3,7 @@ Command= (require 'commander').Command
 mainBowerFiles= require 'main-bower-files'
 gulp= require 'gulp'
 jsfy= require 'gulp-jsfy'
+order= require 'gulp-order'
 concat= require 'gulp-concat'
 prettyBytes= require 'pretty-bytes'
 
@@ -29,12 +30,16 @@ class Onefile extends Command
     super
     
     files= mainBowerFiles()
-    console.log 'Found:'
+    if files.length is 0
+      console.error 'Missing dependencies of bower.json'
+      process.exit 1
 
+    console.log 'Found:'
     gulp.src files.concat ['!**/*.!(*js|*css)']
       .on 'data',(file)=>
         @stats file.path
       .pipe jsfy datauri:yes
+      .pipe order files
       .pipe concat @output+'.js'
       .pipe gulp.dest @cwd
       .on 'data',(file)=>
@@ -68,7 +73,7 @@ class Onefile extends Command
         @stats "#{@output}.min.js.map"
 
   stats: (file)->
-    byte= ('   '+(prettyBytes fs.statSync(file).size)).slice(-9)
+    byte= ('   '+(prettyBytes fs.statSync(file).size)).slice(-10)
     console.log '  ',byte,(path.relative @cwd,file)
 
 module.exports= new Onefile
