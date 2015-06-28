@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor",
-  "version": "0.3.0-beta.4",
+  "version": "0.3.0-beta.5",
 
   "scripts": {
     "start": "jasminetea --watch",
@@ -22,7 +22,7 @@
     "commander": "^2.8.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
-    "gulp-jsfy": "^0.1.5",
+    "gulp-jsfy": "^0.1.6-alpha",
     "gulp-order": "^1.1.1",
     "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
