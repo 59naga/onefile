@@ -34,12 +34,15 @@ class Onefile extends Command
       console.error 'Missing dependencies of bower.json'
       process.exit 1
 
+    # gulp-order doesn't work at absolute path
+    files= (path.relative process.cwd(),file for file in files)
+
     console.log 'Found:'
-    gulp.src files.concat ['!**/*.!(*js|*css)']
+    gulp.src (files.concat ['!**/*.!(*js|*css)']),{base:'.'}
+      .pipe order files
       .on 'data',(file)=>
         @stats file.path
       .pipe jsfy datauri:yes
-      .pipe order files
       .pipe concat @output+'.js'
       .pipe gulp.dest @cwd
       .on 'data',(file)=>
@@ -73,7 +76,7 @@ class Onefile extends Command
         @stats "#{@output}.min.js.map"
 
   stats: (file)->
-    byte= ('   '+(prettyBytes fs.statSync(file).size)).slice(-10)
+    byte= ('    '+(prettyBytes fs.statSync(file).size)).slice(-8)
     console.log '  ',byte,(path.relative @cwd,file)
 
 module.exports= new Onefile

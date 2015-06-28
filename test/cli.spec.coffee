@@ -61,16 +61,3 @@ describe 'onefile',->
       expect(min.length).toBeGreaterThan  100000
       expect(map.length).toBeGreaterThan  150000
       done()
-
-  it '$ bower install bootstrap bootstrap-material-design --save && onefile',(done)->
-    $onefile 'bootstrap bootstrap-material-design',[],(error,stdout)->
-      output= 'pkgs'
-      js= fs.readFileSync (testDir+output+'.js'),'utf8'
-
-      expect(js.length).toBeGreaterThan  200000
-
-      parentOffset= stdout.indexOf 'bower_components/bootstrap/'
-      childOffset= stdout.indexOf 'bower_components/bootstrap-material-design/'
-      expect(parentOffset).toBeGreaterThan childOffset
-
-      done()

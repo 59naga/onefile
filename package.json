@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor",
-  "version": "0.3.0-beta.0",
+  "version": "0.3.0-beta.2",
 
   "scripts": {
     "start": "jasminetea --watch",
@@ -10,6 +10,11 @@
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm test"
+    }
   },
   
   "dependencies": {
@@ -24,6 +29,7 @@
     "uglify-js": "^2.4.23"
   },
   "devDependencies": {
+    "ghooks": "^0.3.2",
     "jasminetea": "^0.2.1"
   },
 
