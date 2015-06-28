@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor",
-  "version": "0.3.0-beta.2",
+  "version": "0.3.0-beta.3",
 
   "scripts": {
     "start": "jasminetea --watch",
