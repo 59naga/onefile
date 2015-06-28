@@ -40,9 +40,9 @@ class Onefile extends Command
     console.log 'Found:'
     gulp.src (files.concat ['!**/*.!(*js|*css)']),{base:'.'}
       .pipe order files
+      .pipe jsfy dataurl:yes
       .on 'data',(file)=>
-        @stats file.path
-      .pipe jsfy datauri:yes
+        @stats file
       .pipe concat @output+'.js'
       .pipe gulp.dest @cwd
       .on 'data',(file)=>
@@ -76,8 +76,11 @@ class Onefile extends Command
         @stats "#{@output}.min.js.map"
 
   stats: (file)->
-    byte= ('    '+(prettyBytes fs.statSync(file).size)).slice(-8)
-    console.log '  ',byte,(path.relative @cwd,file)
+    filePath= file?.path or file
+    fileSize= file.contents?.length or fs.statSync(filePath).size
+
+    byte= ('    '+(prettyBytes fileSize)).slice(-9)
+    console.log '  ',byte,(path.relative @cwd,filePath)
 
 module.exports= new Onefile
 module.exports.Onefile= Onefile
