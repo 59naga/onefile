@@ -29,4 +29,4 @@ deploy:
   provider: npm
   email: i59naga@icloud.com
   api_key:
-    secure: D6VTQ/gzVtYVnYjDbRZzh8SBgPtcO8PVU7LcklLWxvsabuTEg5jro44yW1tfFlhFlB/rH+zRyIwMkbZRsWx8wn0P1Fz0wMuI77oX0AEVtqGUKdGs5l4hApatNxQQGgidJOOvypRy4a7N9Zw8UphkOiyDUwOo65H4YydgjdzZaiA=
+    secure: bzRflvdEN+x0Yj0BiTHu4kcI39FxaPXT8HOIU4fa4i5TwHC/FVKZvqUk4nw2VJSi1OiCvQG1PtDlPK0XcIH9qVBX+/qX2o8vqY6zF5J84ThW9t1uaHdDvy4OefhY3UyFtYJlQousLZ1fcPS8IT4j7yCeuo53BODt291sdj/Ao5Y=
