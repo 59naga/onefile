@@ -27,6 +27,8 @@ class Onefile extends Command
 
   parse: ->
     super
+
+    @output+= '.js' if @output.slice(-3) isnt '.js'
     
     files= mainBowerFiles()
     if files.length is 0
@@ -38,14 +40,14 @@ class Onefile extends Command
 
     console.log 'Found:'
     bundle= []
-    
+
     gulp.src (files.concat ['!**/*.!(*js|*css)']),{base:'.'}
       .pipe order files
       .pipe jsfy dataurl:yes
       .on 'data',(file)=>
         @stats file
       .pipe sourcemaps.init()
-      .pipe concat @output+'.js'
+      .pipe concat @output
       .pipe sourcemaps.write './'
       .pipe gulp.dest @cwd
       .on 'data',(file)->

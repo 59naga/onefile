@@ -44,7 +44,7 @@ describe 'onefile',->
       done()
 
   it '$ bower install slick-carousel --save && onefile --output slick',(done)->
-    $onefile 'slick-carousel',['--output','slick'],(error,stdout,stderr)->
+    $onefile 'slick-carousel',['--output','slick.js'],(error,stdout,stderr)->
       output= 'slick'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
       map= fs.readFileSync (testDir+output+'.js.map'),'utf8'
