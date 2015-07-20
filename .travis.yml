@@ -23,10 +23,10 @@ env:
     secure: qeFyqdmPvt/ZCfN60KDES+o9+3Ebebq4XtAA1sswdN+LnarDescMIGSpNiJrP0rMncnEd78eOz8/R6m4GGcUxKRE/jX1W6buJLO5TJpAoMAK8//EF3I6AvzFvsafGRxt7ZF8xWLEh1c/iDb2zSIOBuT0DQXa3fi0Y+twlTKf90U=
 
 # Npm publish options
-before_deploy:
-  - npm install coffee-script --global
 deploy:
   provider: npm
   email: i59naga@icloud.com
   api_key:
-    secure: a5cJQcEX18Yi48rFB0QWMSmcljYZ7qBcAIM71QZVucMLGJh75EcrAMgvBhC3SEo3FF4xySj4aA92DXrUcJt1NLyhf0GGlkjYEEccAcgmPDEFDng5xGrukKFGlCvhcnrpRuh6M/cK+RhWRr3Qq/+Iue9wU4WMZdZshTC2YUDrwqM=
+    secure: VCZOseyR+gFOH1qaeXitmK5MVQAgjb/Jh+UjupAl/A1o8uCysXW2cKrG4Fe2m60gqYHGxpUqAyi93iD2yNmvvUApt+ODC0KDaPrX+ZKI5mEE23SfubfAVKKAhKD/JS/FczgP73QKxlMblNyrUonf60LGunGfom3ZTxELqaQBVEE=
+  on:
+    repo: 59naga/onefile
