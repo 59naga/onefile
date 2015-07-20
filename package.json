@@ -25,6 +25,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-jsfy": "^0.1.6-alpha",
     "gulp-order": "^1.1.1",
+    "gulp-sourcemaps": "^1.5.2",
     "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
     "uglify-js": "^2.4.23"

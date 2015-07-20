@@ -1,13 +1,14 @@
 # Dependencies
 Command= (require 'commander').Command
+
 mainBowerFiles= require 'main-bower-files'
 gulp= require 'gulp'
 jsfy= require 'gulp-jsfy'
 order= require 'gulp-order'
 concat= require 'gulp-concat'
+sourcemaps= require 'gulp-sourcemaps'
 prettyBytes= require 'pretty-bytes'
 
-spawn= (require 'child_process').spawn
 path= require 'path'
 fs= require 'fs'
 
@@ -36,16 +37,23 @@ class Onefile extends Command
     files= (path.relative process.cwd(),file for file in files)
 
     console.log 'Found:'
+    bundle= []
+    
     gulp.src (files.concat ['!**/*.!(*js|*css)']),{base:'.'}
       .pipe order files
       .pipe jsfy dataurl:yes
       .on 'data',(file)=>
         @stats file
+      .pipe sourcemaps.init()
       .pipe concat @output+'.js'
+      .pipe sourcemaps.write './'
       .pipe gulp.dest @cwd
-      .on 'data',(file)=>
+      .on 'data',(file)->
+        bundle.unshift file
+      .on 'end',=>
+
         console.log 'Yield:'
-        @stats file.path
+        @stats file.path for file in bundle
 
   stats: (file)->
     filePath= file?.path or file

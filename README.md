@@ -18,14 +18,17 @@ $ bower install c3-angular --save
 # ...
 $ onefile
 # Found:
-#    965.53 kB bower_components/angular/angular.js
+#    966.35 kB bower_components/angular/angular.js
 #    334.22 kB bower_components/d3/d3.js
-#      2.77 kB bower_components/c3/c3.css
+#      3.94 kB bower_components/c3/c3.css.js
 #    296.62 kB bower_components/c3/c3.js
-#     40.58 kB bower_components/c3-angular/c3js-directive.js
+#     40.85 kB bower_components/c3-angular/c3js-directive.js
 # Yield:
 #      1.64 MB pkgs.js
+#      1.91 MB pkgs.js.map
 ```
+
+Can use dependency files quickly.
 
 ## Other options
 
