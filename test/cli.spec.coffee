@@ -1,11 +1,13 @@
 # Dependencies
-onefile= require '../src'
+# onefile= require '../src'
 
 path= require 'path'
 fs= require 'fs'
 exec= (require 'child_process').exec
 
 # Environment
+testDir= __dirname+path.sep
+
 jasmine.DEFAULT_TIMEOUT_INTERVAL= 100000
 $onefile= (packages='',argv=[],callback)->
   fs.writeFileSync testDir+'bower.json',JSON.stringify {
@@ -14,8 +16,6 @@ $onefile= (packages='',argv=[],callback)->
   script= 'bower install '+packages+' --save && coffee ../onefile '+argv.join(' ')
 
   exec script,{cwd:__dirname},callback
-
-testDir= __dirname+path.sep
 
 # Specs
 describe 'onefile',->
@@ -38,26 +38,18 @@ describe 'onefile',->
       expect(js.length).toBeGreaterThan 1000000
       done()
 
-  it '$ bower install c3-angular --save && onefile --mangle --soucemap',(done)->
-    $onefile 'c3-angular',['--mangle','--soucemap'],->
+  it '$ bower install c3-angular --save && onefile',(done)->
+    $onefile 'c3-angular',[],->
       output= 'pkgs'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
-      min= fs.readFileSync (testDir+output+'.min.js'),'utf8'
-      map= fs.readFileSync (testDir+output+'.min.js.map'),'utf8'
 
       expect(js.length).toBeGreaterThan  1000000
-      expect(min.length).toBeGreaterThan  400000
-      expect(map.length).toBeGreaterThan  600000
       done()
 
-  it '$ bower install slick-carousel --save && onefile --mangle --soucemap --output slick',(done)->
-    $onefile 'slick-carousel',['--mangle','--soucemap','--output','slick'],->
+  it '$ bower install slick-carousel --save && onefile --output slick',(done)->
+    $onefile 'slick-carousel',['--output','slick'],->
       output= 'slick'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'
-      min= fs.readFileSync (testDir+output+'.min.js'),'utf8'
-      map= fs.readFileSync (testDir+output+'.min.js.map'),'utf8'
 
       expect(js.length).toBeGreaterThan   200000
-      expect(min.length).toBeGreaterThan  100000
-      expect(map.length).toBeGreaterThan  150000
       done()
