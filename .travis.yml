@@ -11,6 +11,7 @@ branches:
 
 # Language options
 before_install:
+  - npm install coffee-script --global
   - npm install bower --global
 language: node_js
 node_js:
