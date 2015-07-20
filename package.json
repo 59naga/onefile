@@ -1,8 +1,8 @@
 {
   "name": "onefile",
   "bin":  "onefile",
-  "description": "bower main files compressor",
-  "version": "0.3.0-beta.5",
+  "description": "bower main files compressor for js/css",
+  "version": "0.3.0",
 
   "scripts": {
     "start": "jasminetea --watch",
@@ -40,9 +40,9 @@
 
   "keywords": [
     "bower",
-    "base64",
     "js",
-    "css"
+    "css",
+    "concat"
   ],
   "author": "59naga <i59naga@icloud.com> (http://berabou.me/)",
   "repository": {

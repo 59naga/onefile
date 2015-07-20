@@ -43,7 +43,7 @@ describe 'onefile',->
       expect(map.length).toBeGreaterThan  200000
       done()
 
-  it '$ bower install slick-carousel --save && onefile --output slick',(done)->
+  it '$ bower install slick-carousel --save && onefile --output slick.js',(done)->
     $onefile 'slick-carousel',['--output','slick.js'],(error,stdout,stderr)->
       output= 'slick'
       js= fs.readFileSync (testDir+output+'.js'),'utf8'

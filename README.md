@@ -1,5 +1,7 @@
 # ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
 
+> bower main files compressor for js/css
+
 ## Installation
 ```bash
 $ npm install onefile --global
