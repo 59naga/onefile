@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor for js/css",
-  "version": "0.3.0",
+  "version": "0.3.1-alpha",
 
   "scripts": {
     "start": "jasminetea --watch",
@@ -19,16 +19,17 @@
   },
   
   "dependencies": {
-    "chalk": "^1.0.0",
     "commander": "^2.8.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-jsfy": "^0.1.6-alpha",
+    "gulp-load-plugins": "^0.10.0",
     "gulp-order": "^1.1.1",
     "gulp-sourcemaps": "^1.5.2",
     "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
-    "uglify-js": "^2.4.23"
+    "through2": "^2.0.0",
+    "uglify-js": "^2.4.24"
   },
   "devDependencies": {
     "ghooks": "^0.3.2",

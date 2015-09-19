@@ -9,7 +9,7 @@ $ npm install onefile --global
 
 # Usage
 
-## `onefile`
+## `onefile --output pkgs`
 
 Combile the [main property file of dependencies](https://github.com/ck86/main-bower-files#usage) to `pkgs.js` using `./bower.json`
 
@@ -18,7 +18,7 @@ $ bower init
 # ...
 $ bower install c3-angular --save
 # ...
-$ onefile
+$ onefile --output pkgs
 # Found:
 #    966.35 kB bower_components/angular/angular.js
 #    334.22 kB bower_components/d3/d3.js
@@ -30,20 +30,6 @@ $ onefile
 ```
 
 Can use dependency files quickly.
-
-## Other options
-
-```bash
-$ onefile --help
-#
-#  Usage: onefile [options]
-#
-#  Options:
-#
-#    -h, --help              output usage information
-#    -o, --output <pkgs>.js  Change the output filename
-#    -V, --version           output the version number
-```
 
 ## Support
 

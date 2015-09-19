@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('./').parse(process.argv);
+require('./cli').parse(process.argv);
