@@ -2,7 +2,13 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor for js/css",
-  "version": "0.3.1-beta",
+  "version": "0.3.1-rc.0",
+
+  "files": [
+    "onefile",
+    "index.js",
+    "lib"
+  ],
 
   "scripts": {
     "start": "jasminetea --watch",
