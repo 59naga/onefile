@@ -27,7 +27,6 @@ $ onefile
 #     40.85 kB bower_components/c3-angular/c3js-directive.js
 # Yield:
 #      1.64 MB pkgs.js
-#      1.91 MB pkgs.js.map
 ```
 
 Can use dependency files quickly.

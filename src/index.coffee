@@ -48,7 +48,7 @@ class Onefile extends Command
         @stats file
       .pipe sourcemaps.init()
       .pipe concat @output
-      .pipe sourcemaps.write './'
+      .pipe sourcemaps.write()
       .pipe gulp.dest @cwd
       .on 'data',(file)->
         bundle.unshift file
