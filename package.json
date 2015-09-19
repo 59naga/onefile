@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower main files compressor for js/css",
-  "version": "0.3.1-rc.2",
+  "version": "0.3.1-rc3",
 
   "files": [
     "onefile",
@@ -28,7 +28,7 @@
     "commander": "^2.8.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
-    "gulp-jsfy": "^0.1.6-alpha",
+    "gulp-jsfy": "^0.1.6-beta",
     "gulp-load-plugins": "^0.10.0",
     "gulp-order": "^1.1.1",
     "gulp-sourcemaps": "^1.5.2",
