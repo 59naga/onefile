@@ -1,6 +1,6 @@
 # ![onefile][.svg] Onefile [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
 
-> bower main files compressor for js/css
+> bower_components compressor
 
 ## Installation
 ```bash
@@ -43,6 +43,59 @@ Ignore except for the following files
 * [express-onefile](https://github.com/59naga/express-onefile/)
 * [difficult-http-server](https://github.com/59naga/difficult-http-server)
 
+# API
+
+# onefile(options) -> gulpTask
+
+```bash
+npm install bower --global # optional
+
+npm init --yes
+npm install onefile --save
+
+node task.js
+# !function(e,t){"object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return ...
+```
+
+`task.js`
+
+```js
+// Dependencies
+var onefile= require('onefile');
+var fs= require('fs');
+var childProcess= require('child_process');
+
+// Onefile settings
+var options= {
+  // in-out directory
+  cwd: process.cwd(),
+  
+  // output filename for gulp.dest
+  outputName: 'pkgs.js',
+  
+  // output Found / Yield log
+  outputBytes: false,
+
+  // mangling output
+  mangle: true,
+
+  // add summry comment
+  header: true,
+};
+
+// Install bower_components
+fs.writeFileSync('bower.json',JSON.stringify({name:'pkgs'}));
+childProcess.spawnSync('bower',['install','jquery','--save']);
+
+// Execute gulp task
+var task= onefile(options);
+task.on('data',function(file){
+  console.log(file.contents.toString());
+});
+task.on('end',function(){
+  process.exit(0);
+});
+```
 
 License
 =========================

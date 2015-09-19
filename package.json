@@ -1,8 +1,8 @@
 {
   "name": "onefile",
   "bin":  "onefile",
-  "description": "bower main files compressor for js/css",
-  "version": "0.3.1-rc3",
+  "description": "bower_components compressor",
+  "version": "0.3.1-rc4",
 
   "files": [
     "onefile",
@@ -12,7 +12,7 @@
 
   "scripts": {
     "start": "jasminetea --watch",
-    "test": "jasminetea --lint",
+    "test": "jasminetea --cover --report --lint",
     
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
@@ -32,6 +32,7 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-order": "^1.1.1",
     "gulp-sourcemaps": "^1.5.2",
+    "gulp-wrapper": "^1.0.0",
     "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
     "through2": "^2.0.0",

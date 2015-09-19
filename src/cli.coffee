@@ -12,6 +12,7 @@ class CLI extends Command
     super
 
     @option '-o, --output <file>.js','output to <file>'
+    @option '-H, --no-header','remove summry comment'
     @option '-m, --mangle','mangling output'
     @version packageVersion
 
@@ -28,13 +29,20 @@ class CLI extends Command
       else
         'pkgs.js'
 
+    options=
+      outputName: outputName
+      header: @header
+      mangle: @mangle
+
     if @output
+      options.outputBytes= yes
+      
       bundle= []
-      onefile {mangle:@mangle,outputName:@output,outputBytes:yes}
+      onefile options
       .pipe gulp.dest process.cwd()
 
     else
-      onefile {mangle:@mangle}
+      onefile options
       .on 'data',(file)->
         process.stdout.write file.contents
 
