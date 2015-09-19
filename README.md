@@ -39,8 +39,10 @@ Ignore except for the following files
 * `.css` [(convert url() to datauri, and convert it to js.)](https://github.com/59naga/gulp-jsfy#how-do-transform-to-js-)
 
 # Related projects
-* [express-onefile](https://github.com/59naga/express-onefile/)
 * __onefile__
+* [express-onefile](https://github.com/59naga/express-onefile/)
+* [difficult-http-server](https://github.com/59naga/difficult-http-server)
+
 
 License
 =========================
