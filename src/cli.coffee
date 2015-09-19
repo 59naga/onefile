@@ -1,5 +1,5 @@
 # Dependencies
-onefile= require './'
+onefile= require './onefile'
 
 Command= (require 'commander').Command
 gulp= require 'gulp'
