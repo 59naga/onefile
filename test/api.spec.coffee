@@ -22,7 +22,7 @@ describe 'onefile',->
   afterAll (done)->
     exec 'rm *.js *.map *.json',execOptions,done
 
-  fit '$ bower install jquery --save && onefile',(done)->
+  it '$ bower install jquery --save && onefile',(done)->
     $bowerInstall 'jquery',->
       onefile {cwd:__dirname}
       .on 'data',(file)->
