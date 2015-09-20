@@ -102,7 +102,7 @@ task.on('end',function(){
 
 License
 =========================
-[MIT][license] by 59naga
+[MIT][license]
 
 [.svg]: https://cdn.rawgit.com/59naga/onefile/master/.svg
 
