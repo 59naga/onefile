@@ -11,13 +11,14 @@ uglifyjs= require 'uglify-js'
 path= require 'path'
 
 # Public
-onefile= ({cwd,outputName,outputBytes,header,mangle}={})->
+onefile= ({cwd,outputName,outputBytes,header,mangle,detachSourcemap}={})->
   cwd?= process.cwd()
   outputName?= 'pkgs.js'
   outputName+= '.js' if outputName.slice(-3) isnt '.js'
   outputBytes?= no
   header?= yes
   mangle?= false
+  detachSourcemap?= false
 
   files= mainBowerFiles
     paths:
@@ -74,18 +75,35 @@ onefile= ({cwd,outputName,outputBytes,header,mangle}={})->
     .pipe plugins.sourcemaps.write()
     .pipe through2.obj (obj,enc,next)->
       if mangle
-        mangled= uglifyjs.minify obj.contents.toString(),{
+        source= obj.contents.toString()
+        mangleOptions=
           mangle: yes
           compress: yes
           fromString: yes
-        }
+
+        if detachSourcemap
+          mangleOptions.inSourceMap= sourceMap
+          mangleOptions.outSourceMap= outputName+'.map'
+          sourcemapRegexp= /\/\/# sourceMappingURL=data:application\/json;base64,.+$/g
+          sourceMapInline= (source.match sourceMapRegexp)?[0].split(',')[1]
+          sourceMap= JSON.parse (new Buffer(sourceMapInline,'base64')).toString()
+
+      if mangle
+        mangled= uglifyjs.minify source,mangleOptions
+
         obj.contents= new Buffer mangled.code
+        if mangled.map
+          map= new plugins.util.File
+            path: obj.path+'.map'
+            contents: new Buffer mangled.map
 
       @push obj
+      @push map if map
 
       if outputBytes
         console.log 'Yield:'
         console.log '  ',bytes obj,cwd
+        console.log '  ',bytes map,cwd if map
 
       next()
 

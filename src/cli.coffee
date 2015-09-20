@@ -13,7 +13,8 @@ class CLI extends Command
 
     @option '-o, --output <file>.js','output to <file>'
     @option '-H, --no-header','remove summary comment'
-    @option '-m, --mangle','mangling output'
+    @option '-m, --mangle','compress output'
+    @option '-d, --detach','export inline-sourcemap to `<file>.js.map` from output'
     @version packageVersion
 
   parse: ->
@@ -36,6 +37,7 @@ class CLI extends Command
 
     if @output
       options.outputBytes= yes
+      options.detachSourcemap= @detach
       
       bundle= []
       onefile options

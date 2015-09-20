@@ -74,8 +74,11 @@ var options= {
   // output Found / Yield log
   outputBytes: false,
 
-  // mangling output
+  // compress output
   mangle: true,
+
+  // export inline sourcemap to `outputName.map`
+  detachSourcemap: false,
 
   // add summry comment
   header: true,
