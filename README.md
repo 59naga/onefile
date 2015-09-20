@@ -31,6 +31,9 @@ $ onefile --output pkgs
 
 Can use dependency files quickly.
 
+## Other options
+See also `onefile --help`
+
 ## Support
 
 Ignore except for the following files
