@@ -12,7 +12,7 @@ class CLI extends Command
     super
 
     @option '-o, --output <file>.js','output to <file>'
-    @option '-H, --no-header','remove summry comment'
+    @option '-H, --no-header','remove summary comment'
     @option '-m, --mangle','mangling output'
     @version packageVersion
 
