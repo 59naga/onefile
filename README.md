@@ -38,14 +38,9 @@ Ignore except for the following files
 * `.js`
 * `.css` [(convert url() to datauri, and convert it to js.)](https://github.com/59naga/gulp-jsfy#how-do-transform-to-js-)
 
-# Related projects
-* __onefile__
-* [express-onefile](https://github.com/59naga/express-onefile/)
-* [difficult-http-server](https://github.com/59naga/difficult-http-server)
-
 # API
 
-# onefile(options) -> gulpTask
+## onefile(options) -> gulpTask
 
 ```bash
 npm install bower --global # optional
@@ -96,6 +91,11 @@ task.on('end',function(){
   process.exit(0);
 });
 ```
+
+# Related projects
+* __onefile__
+* [express-onefile](https://github.com/59naga/express-onefile/)
+* [difficult-http-server](https://github.com/59naga/difficult-http-server)
 
 License
 =========================
