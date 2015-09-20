@@ -84,7 +84,7 @@ onefile= ({cwd,outputName,outputBytes,header,mangle,detachSourcemap}={})->
         if detachSourcemap
           mangleOptions.inSourceMap= sourceMap
           mangleOptions.outSourceMap= outputName+'.map'
-          sourcemapRegexp= /\/\/# sourceMappingURL=data:application\/json;base64,.+$/g
+          sourceMapRegexp= /\/\/# sourceMappingURL=data:application\/json;base64,.+$/g
           sourceMapInline= (source.match sourceMapRegexp)?[0].split(',')[1]
           sourceMap= JSON.parse (new Buffer(sourceMapInline,'base64')).toString()
 
