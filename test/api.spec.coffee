@@ -22,14 +22,24 @@ describe 'onefile',->
   afterAll (done)->
     exec 'rm *.js *.map *.json',execOptions,done
 
-  it '$ bower install jquery --save && onefile',(done)->
-    $bowerInstall 'jquery',->
+  fit '$ bower install bootstrap --save && onefile',(done)->
+    summaries= [
+      /kB bower_components\/jquery\/dist\/jquery.js/
+      /kB bower_components\/bootstrap\/dist\/js\/bootstrap.js/
+      /kB pkgs.js/
+    ]
+
+    $bowerInstall 'bootstrap',->
       onefile {cwd:__dirname}
       .on 'data',(file)->
+        chunk= file.contents.toString().slice(0,200)
+
         expect(file.contents.length).toBeGreaterThan 200000
+        expect(chunk).toMatch summaries[0]
+        expect(chunk).toMatch summaries[1]
+        expect(chunk).toMatch summaries[2]
         
-      .on 'end',->
-        done()
+      .on 'end',done
 
   it '$ bower install c3-angular --save && onefile',(done)->
     $bowerInstall 'c3-angular',->
@@ -37,8 +47,7 @@ describe 'onefile',->
       .on 'data',(file)->
         expect(file.contents.length).toBeGreaterThan 1000000
 
-      .on 'end',->
-        done()
+      .on 'end',done
 
   it '$ bower install slick-carousel --save && onefile',(done)->
     $bowerInstall 'slick-carousel',->
@@ -46,5 +55,4 @@ describe 'onefile',->
       .on 'data',(file)->
         expect(file.contents.length).toBeGreaterThan 200000
 
-      .on 'end',->
-        done()
+      .on 'end',done

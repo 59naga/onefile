@@ -1,6 +1,6 @@
 {
   "cyclomatic_complexity": {
-    "value": 14,
+    "value": 10,
     "level": "error"
   },
   "max_line_length": {

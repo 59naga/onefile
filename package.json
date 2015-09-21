@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower_components compressor",
-  "version": "0.3.1-rc7",
+  "version": "0.3.1-rc8",
 
   "files": [
     "onefile",
@@ -33,7 +33,6 @@
     "gulp-order": "^1.1.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
-    "gulp-wrapper": "^1.0.0",
     "main-bower-files": "^2.8.2",
     "pretty-bytes": "^2.0.1",
     "through2": "^2.0.0",
