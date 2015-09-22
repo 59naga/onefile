@@ -12,11 +12,11 @@ class CLI extends Command
     super
 
     @version packageVersion
+    @option '-m, --mangle','compress output'
+    @option '-d, --detach','export inline-sourcemap to `<file>.js.map` via `--output`'
     @option '-o, --output <file>','output to <file>.js'
     @option '-S, --no-sourcemap','remove inline-sourcemap'
     @option '-H, --no-summary','remove summary comment'
-    @option '-m, --mangle','compress output'
-    @option '-d, --detach','export inline-sourcemap to `<file>.js.map` via `--output`'
 
   parse: ->
     super

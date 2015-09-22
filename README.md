@@ -60,6 +60,7 @@ node task.js
 ```js
 // Dependencies
 var onefile= require('onefile');
+
 var fs= require('fs');
 var childProcess= require('child_process');
 
@@ -67,22 +68,25 @@ var childProcess= require('child_process');
 var options= {
   // in-out directory
   cwd: process.cwd(),
-  
-  // output filename for gulp.dest
-  outputName: 'pkgs.js',
-  
-  // output Found / Yield log
-  outputBytes: false,
-
-  // compress output
-  mangle: true,
-
-  // export inline sourcemap to `outputName.map`
-  detachSourcemap: false,
 
   // add summry comment
   summary: true,
-};
+
+  // write inline-sourcemap
+  sourcemap: true,
+  
+  // compress output
+  mangle: true,
+
+  // export inline-sourcemap to `outputName.map`
+  detachSourcemap: false,
+
+  // output Found / Yield to console.log
+  outputBytes: false,
+
+  // rename for file(gulp-util.File instance)
+  outputName: 'pkgs.js',
+  };
 
 // Install bower_components
 fs.writeFileSync('bower.json',JSON.stringify({name:'pkgs'}));
