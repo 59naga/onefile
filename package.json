@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower_components compressor",
-  "version": "0.3.1-rc8",
+  "version": "0.3.1",
 
   "engines": {
     "node": ">=0.12"
@@ -44,9 +44,6 @@
   "devDependencies": {
     "ghooks": "^0.3.2",
     "jasminetea": "^0.2.1"
-  },
-  "extraDependencies": {
-    "bower": "^1.4.1"
   },
 
   "keywords": [
