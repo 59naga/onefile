@@ -86,7 +86,7 @@ var options= {
 
   // rename for file(gulp-util.File instance)
   outputName: 'pkgs.js',
-  };
+};
 
 // Install bower_components
 fs.writeFileSync('bower.json',JSON.stringify({name:'pkgs'}));
