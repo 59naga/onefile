@@ -10,11 +10,12 @@ plugins= (require 'gulp-load-plugins')()
 path= require 'path'
 
 # Public
-onefile= ({cwd,outputName,outputBytes,header,mangle,detachSourcemap}={})->
+onefile= ({cwd,outputName,outputBytes,sourcemap,header,mangle,detachSourcemap}={})->
   cwd?= process.cwd()
   outputName?= 'pkgs.js'
   outputName+= '.js' if outputName.slice(-3) isnt '.js'
   outputBytes?= no
+  sourcemap?= yes
   header?= yes
   mangle?= false
   detachSourcemap?= false
@@ -37,13 +38,24 @@ onefile= ({cwd,outputName,outputBytes,header,mangle,detachSourcemap}={})->
   files= (path.relative process.cwd(),file for file in files)
   available= files.concat ['!**/*.!(*js|*css)']
 
-  gulp.src available,{base:'.'}
-    .pipe plugins.order files
-    .pipe plugins.jsfy dataurl:yes
-    .pipe summaries {cwd,outputBytes,outputName}
-    .pipe plugins.sourcemaps.init()
-    .pipe plugins.concat outputName
-    .pipe plugins.sourcemaps.write()
-    .pipe compresser {cwd,outputBytes,mangle,detachSourcemap}
+  if sourcemap
+    gulp.src available,{base:'.'}
+      .pipe plugins.order files
+      .pipe plugins.jsfy dataurl:yes
+      .pipe summaries {cwd,outputBytes,outputName}
+      .pipe plugins.sourcemaps.init()
+      .pipe plugins.concat outputName
+      .pipe plugins.sourcemaps.write()
+      .pipe compresser {cwd,outputBytes,mangle,detachSourcemap}
+
+  else
+    gulp.src available,{base:'.'}
+      .pipe plugins.order files
+      .pipe plugins.jsfy dataurl:yes
+      .pipe summaries {cwd,outputBytes,outputName}
+      # .pipe plugins.sourcemaps.init()
+      .pipe plugins.concat outputName
+      # .pipe plugins.sourcemaps.write()
+      .pipe compresser {cwd,outputBytes,mangle}
 
 module.exports= onefile

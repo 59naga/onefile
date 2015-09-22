@@ -6,9 +6,6 @@ plugins= (require 'gulp-load-plugins')()
 
 path= require 'path'
 
-# TODO
-# * uncompressed bytes only
-
 # Public
 summaries= ({cwd,outputBytes,outputName}={})->
   # Defaults

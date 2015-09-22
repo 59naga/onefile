@@ -11,11 +11,12 @@ class CLI extends Command
   constructor: ->
     super
 
-    @option '-o, --output <file>.js','output to <file>'
+    @version packageVersion
+    @option '-o, --output <file>','output to <file>.js'
+    @option '-S, --no-sourcemap','remove inline-sourcemap'
     @option '-H, --no-header','remove summary comment'
     @option '-m, --mangle','compress output'
-    @option '-d, --detach','export inline-sourcemap to `<file>.js.map` from output'
-    @version packageVersion
+    @option '-d, --detach','export inline-sourcemap to `<file>.js.map` via `--output`'
 
   parse: ->
     super
@@ -32,6 +33,7 @@ class CLI extends Command
 
     options=
       outputName: outputName
+      sourcemap: @sourcemap
       header: @header
       mangle: @mangle
 
@@ -43,6 +45,7 @@ class CLI extends Command
       onefile options
       .pipe gulp.dest process.cwd()
 
+    # use stdout
     else
       onefile options
       .on 'data',(file)->
