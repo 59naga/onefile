@@ -11,7 +11,7 @@ $ npm install onefile --global
 
 ## `onefile --output pkgs`
 
-Combile the [main property file of dependencies](https://github.com/ck86/main-bower-files#usage) to `pkgs.js` using `./bower.json`
+Combile the [main property files of dependencies](https://github.com/ck86/main-bower-files#usage) to `pkgs.js` using `./bower.json`
 
 ```bash
 $ bower init
