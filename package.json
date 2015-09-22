@@ -4,6 +4,9 @@
   "description": "bower_components compressor",
   "version": "0.3.1-rc8",
 
+  "engines": {
+    "node": ">=0.12"
+  },
   "files": [
     "onefile",
     "index.js",

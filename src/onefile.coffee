@@ -10,13 +10,13 @@ plugins= (require 'gulp-load-plugins')()
 path= require 'path'
 
 # Public
-onefile= ({cwd,outputName,outputBytes,sourcemap,header,mangle,detachSourcemap}={})->
+onefile= ({cwd,outputName,outputBytes,sourcemap,summary,mangle,detachSourcemap}={})->
   cwd?= process.cwd()
   outputName?= 'pkgs.js'
   outputName+= '.js' if outputName.slice(-3) isnt '.js'
   outputBytes?= no
   sourcemap?= yes
-  header?= yes
+  summary?= yes
   mangle?= false
   detachSourcemap?= false
 

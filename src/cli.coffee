@@ -14,7 +14,7 @@ class CLI extends Command
     @version packageVersion
     @option '-o, --output <file>','output to <file>.js'
     @option '-S, --no-sourcemap','remove inline-sourcemap'
-    @option '-H, --no-header','remove summary comment'
+    @option '-H, --no-summary','remove summary comment'
     @option '-m, --mangle','compress output'
     @option '-d, --detach','export inline-sourcemap to `<file>.js.map` via `--output`'
 
@@ -34,7 +34,7 @@ class CLI extends Command
     options=
       outputName: outputName
       sourcemap: @sourcemap
-      header: @header
+      summary: @summary
       mangle: @mangle
 
     if @output

@@ -81,7 +81,7 @@ var options= {
   detachSourcemap: false,
 
   // add summry comment
-  header: true,
+  summary: true,
 };
 
 // Install bower_components
