@@ -24,7 +24,7 @@ compresser= ({cwd,mangle,detachSourcemap,outputBytes}={})->
         fromString: yes
 
       if detachSourcemap
-        sourceMapRegexp= /\/\/# sourceMappingURL=data:application\/json;base64,.+$/g
+        sourceMapRegexp= /\/\/# sourceMappingURL=data:application\/json;base64,.+$/m
         sourceMapInline= (source.match sourceMapRegexp)?[0].split(',')[1]
         sourceMap= JSON.parse (new Buffer(sourceMapInline,'base64')).toString()
         mangleOptions.inSourceMap= sourceMap

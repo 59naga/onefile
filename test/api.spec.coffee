@@ -26,7 +26,7 @@ describe 'onefile',->
     beforeAll (done)->
       $bowerInstall 'bootstrap#3.3.5',done
 
-    assumedMaximam= 861808
+    assumedMaximam= 861809
     summaries= [
       /kB bower_components\/jquery\/dist\/jquery.js/
       /kB bower_components\/bootstrap\/dist\/js\/bootstrap.js/
