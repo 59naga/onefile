@@ -13,7 +13,7 @@ execOptions= {cwd:__dirname}
 # execute onefile after bower install
 $bowerInstall= (packages='',callback)->
   fs.writeFileSync bowerJson,JSON.stringify {name:'onefile_fixture'}
-  script= 'bower install '+packages+' --save'
+  script= 'bower install '+packages+' --force-latest'
 
   exec script,execOptions,callback
 
@@ -24,7 +24,7 @@ describe 'onefile',->
 
   describe 'options',(done)->
     beforeAll (done)->
-      $bowerInstall 'bootstrap#3.3.5',done
+      $bowerInstall 'bootstrap#3.3.5 --save',done
 
     assumedMaximam= 861809
     summaries= [
@@ -140,9 +140,53 @@ describe 'onefile',->
 
         done()
 
+  describe 'use devDependencies',->
+    assumedMaximam= 861809
+    summaries= [
+      /kB bower_components\/jquery\/dist\/jquery.js/
+      /kB bower_components\/bootstrap\/dist\/js\/bootstrap.js/
+      /kB pkgs.js/
+    ]
+    sourcemap= /# sourceMappingURL=data:application\/json;base64/
+
+    it 'similar `onefile -D exclusive`',(done)->
+      $bowerInstall 'bootstrap -D',->
+        options=
+          cwd: __dirname
+          mangle: yes
+          detachSourcemap: yes
+          includeDev: 'inclusive'
+
+        files= []
+        onefile options
+        .on 'data',(file)-> files.push file
+        .on 'end',->
+          file= files[0]
+          expect(files.length).toBe 2
+          expect(file.path).toBe 'pkgs.js'
+          expect(file.contents.length).toBeLessThan assumedMaximam/5
+
+          file= files[1]
+          expect(file.path).toBe 'pkgs.js.map'
+
+          map= JSON.parse file.contents.toString()
+          expect(map.version).toBe 3
+          expect(map.file).toBe 'pkgs.js'
+          # expect(map.sources).toEqual ['experimental']
+
+          done()
+
   describe 'Transfrom error check',->
+    it '$ bower install angular-material --save && onefile',(done)->
+      $bowerInstall 'angular-material --save',->
+        onefile {cwd:__dirname}
+        .on 'data',(file)->
+          expect(file.contents.length).toBeGreaterThan 5000000
+
+        .on 'end',done
+
     it '$ bower install c3-angular --save && onefile',(done)->
-      $bowerInstall 'c3-angular',->
+      $bowerInstall 'c3-angular --save',->
         onefile {cwd:__dirname}
         .on 'data',(file)->
           expect(file.contents.length).toBeGreaterThan 1000000
@@ -150,7 +194,7 @@ describe 'onefile',->
         .on 'end',done
 
     it '$ bower install slick-carousel --save && onefile',(done)->
-      $bowerInstall 'slick-carousel',->
+      $bowerInstall 'slick-carousel --save',->
         onefile {cwd:__dirname}
         .on 'data',(file)->
           expect(file.contents.length).toBeGreaterThan 200000

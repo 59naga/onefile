@@ -10,7 +10,7 @@ plugins= (require 'gulp-load-plugins')()
 path= require 'path'
 
 # Public
-onefile= ({cwd,summary,sourcemap,mangle,detachSourcemap,outputName,outputBytes}={})->
+onefile= ({cwd,summary,sourcemap,mangle,detachSourcemap,outputName,outputBytes,includeDev}={})->
   cwd?= process.cwd()
   summary?= yes
   sourcemap?= yes
@@ -21,6 +21,8 @@ onefile= ({cwd,summary,sourcemap,mangle,detachSourcemap,outputName,outputBytes}=
   outputName+= '.js' if outputName.slice(-3) isnt '.js'
   outputBytes?= no
 
+  includeDev?= no
+
   files= mainBowerFiles
     paths:
       bowerJson:
@@ -29,6 +31,8 @@ onefile= ({cwd,summary,sourcemap,mangle,detachSourcemap,outputName,outputBytes}=
         path.join cwd,'bower_components'
       bowerrc:
         path.join cwd,'.bowerrc'
+
+    includeDev: includeDev
 
   if files.length is 0
     console.error 'Missing dependencies of bower.json'

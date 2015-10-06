@@ -17,6 +17,7 @@ class CLI extends Command
     @option '-o, --output <file>','output to <file>.js'
     @option '-S, --no-sourcemap','remove inline-sourcemap'
     @option '-H, --no-summary','remove summary comment'
+    @option '-D, --include-dev <mixed>','use devDependencies field <inclusive/exclusive>'
 
   parse: ->
     super
@@ -36,6 +37,7 @@ class CLI extends Command
       sourcemap: @sourcemap
       summary: @summary
       mangle: @mangle
+      includeDev: @includeDev
 
     if @output
       options.outputBytes= yes

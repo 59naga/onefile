@@ -86,6 +86,9 @@ var options= {
 
   // rename for file(gulp-util.File instance)
   outputName: 'pkgs.js',
+
+  // use devDependencies field <false/'inclusive'/'exclusive'>
+  includeDev: false,
 };
 
 // Install bower_components

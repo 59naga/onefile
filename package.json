@@ -2,7 +2,7 @@
   "name": "onefile",
   "bin":  "onefile",
   "description": "bower_components compressor",
-  "version": "0.3.2",
+  "version": "0.3.3",
 
   "engines": {
     "node": ">=0.12"
